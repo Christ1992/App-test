@@ -27,6 +27,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ff6-ej-pPl">
                                 <rect key="frame" x="137" y="558" width="100" height="30"/>
                                 <state key="normal" title="Select a photo"/>
+                                <connections>
+                                    <action selector="selectPic:" destination="9pv-A4-QxB" eventType="touchUpInside" id="7Oo-KO-uJP"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -40,6 +43,9 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="First" image="first" id="acW-dT-cKf"/>
+                    <connections>
+                        <outlet property="Imageview" destination="LYd-fa-Zlp" id="wJh-Cj-XWF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
@@ -67,6 +73,9 @@
                                     <constraint firstAttribute="height" constant="30" id="yVQ-kf-62x"/>
                                 </constraints>
                                 <state key="normal" title="Take a pic"/>
+                                <connections>
+                                    <action selector="TakePic:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="R3G-Iz-aa4"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -80,6 +89,9 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Second" image="second" id="cPa-gy-q4n"/>
+                    <connections>
+                        <outlet property="CameraView" destination="JZb-oO-xIh" id="aha-kK-bhV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>

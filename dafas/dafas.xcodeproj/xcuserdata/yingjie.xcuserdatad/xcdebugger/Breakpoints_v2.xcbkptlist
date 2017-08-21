@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "dafas/AppDelegate.swift"
+            timestampString = "525049464.771438"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "12"
+            endingLineNumber = "12"
+            landmarkName = "AppDelegate"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "dafas.AppDelegate.__deallocating_deinit"
+                  moduleName = "dafas"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yingjie/tensorflow-master/tensorflow/examples/ios/App-test/dafas/dafas/AppDelegate.swift"
+                  timestampString = "525052229.853601"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "dafas.AppDelegate.init () -&gt; dafas.AppDelegate"
+                  moduleName = "dafas"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yingjie/tensorflow-master/tensorflow/examples/ios/App-test/dafas/dafas/AppDelegate.swift"
+                  timestampString = "525052229.85525"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "32">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "dafas.AppDelegate.__allocating_init () -&gt; dafas.AppDelegate"
+                  moduleName = "dafas"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yingjie/tensorflow-master/tensorflow/examples/ios/App-test/dafas/dafas/AppDelegate.swift"
+                  timestampString = "525052229.856678"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "main"
+                  moduleName = "dafas"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/yingjie/tensorflow-master/tensorflow/examples/ios/App-test/dafas/dafas/AppDelegate.swift"
+                  timestampString = "525052229.858041"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "12">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

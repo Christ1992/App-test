@@ -8,18 +8,56 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class SecondViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
 
+    @IBOutlet weak var CameraView: UIImageView!
+    
+    let imageTaker = UIImagePickerController()
+    
+    @IBAction func TakePic(_ sender: Any) {
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+        imageTaker.allowsEditing = false
+        imageTaker.sourceType = .camera
+        imageTaker.cameraCaptureMode = .photo
+        imageTaker.modalPresentationStyle = .fullScreen
+        present(imageTaker,animated: true,completion: nil)
+    }
+    else {
+        noCamera()
+        }    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        imageTaker.delegate = self
+       
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            self.CameraView.contentMode = .scaleAspectFit
+            self.CameraView.image = pickedImage
+        }
+        
+        dismiss(animated: true, completion: nil)
     }
-
+    
+    
+    func noCamera(){
+        let alertVC = UIAlertController(
+            title: "No Camera",
+            message: "Sorry, this device has no camera",
+            preferredStyle: .alert)
+        let okAction = UIAlertAction(
+            title: "OK",
+            style:.default,
+            handler: nil)
+        alertVC.addAction(okAction)
+        present(
+            alertVC,
+            animated: true,
+            completion: nil)
+    }
 
 }
 
