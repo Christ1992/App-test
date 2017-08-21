@@ -1,13 +1,12 @@
 //
 //  FirstViewController.swift
-//  App-test
+//  dafas
 //
 //  Created by yingjie on 2017/8/21.
 //  Copyright © 2017年 yingjie. All rights reserved.
 //
 
 import UIKit
-import CoreImage
 
 class FirstViewController: UIViewController {
     
@@ -22,5 +21,5 @@ class FirstViewController: UIViewController {
     }
     
     
-    
 }
+
