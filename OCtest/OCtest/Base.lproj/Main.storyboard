@@ -22,11 +22,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eOn-IW-2IJ">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eOn-IW-2IJ">
                                 <rect key="frame" x="0.0" y="20" width="414" height="672"/>
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SNy-eX-lRK">
                                 <rect key="frame" x="0.0" y="692" width="414" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Zac-jU-zAb"/>
+                                </constraints>
                                 <items>
                                     <barButtonItem systemItem="bookmarks" id="COh-wK-QBC">
                                         <connections>
@@ -80,7 +83,12 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="containerView" destination="8bC-Xf-vdC" id="6WJ-sH-nsa"/>
+                        <outlet property="fromCam" destination="y3M-sb-Cye" id="daz-FA-ErM"/>
+                        <outlet property="fromLib" destination="COh-wK-QBC" id="iFo-Pg-QYV"/>
                         <outlet property="imageView" destination="eOn-IW-2IJ" id="yTM-fl-lgU"/>
+                        <outlet property="runStopBtn" destination="z0L-HV-hjw" id="BTz-jJ-M3d"/>
+                        <outlet property="textView" destination="OKv-8x-Qde" id="CbE-IA-v5O"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
