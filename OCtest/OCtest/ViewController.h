@@ -9,7 +9,18 @@
 #import <UIKit/UIKit.h>
 @import AVFoundation;
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController<UIGestureRecognizerDelegate, AVCaptureVideoDataOutputSampleBufferDelegate>{
+    
+    
+    __weak IBOutlet UIImageView *previewView;
+    AVCaptureVideoPreviewLayer *previewLayer;
+    AVCaptureVideoDataOutput *videoDataOutput;
+    dispatch_queue_t videoDataOutputQueue;
+    AVCaptureStillImageOutput *stillImageOutput;
+    AVSpeechSynthesizer *synth;
+    AVCaptureSession *session;
+    UIView *flashView;
+}
 
 
 @end
