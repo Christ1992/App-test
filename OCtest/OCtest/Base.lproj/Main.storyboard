@@ -58,8 +58,7 @@
                                 <rect key="frame" x="157" y="642" width="100" height="30"/>
                                 <state key="normal" title="Run the model"/>
                                 <connections>
-                                    <action selector="RunM:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hWj-KR-ilz"/>
-                                    <action selector="StartCam:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UnU-AG-MNn"/>
+                                    <action selector="StartCamera:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Otl-jV-38a"/>
                                 </connections>
                             </button>
                         </subviews>

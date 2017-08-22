@@ -15,12 +15,6 @@
 
 @implementation ViewController
 
-
-- (IBAction)StartCam:(id)sender {
-    //    start + end the cam
-    //    didn't show until touch TakePic button
-}
-
 - (IBAction)PhotoLib:(id)sender {
 //import a pic
 //hide the cam button [subview setHidden:true];
@@ -30,6 +24,10 @@
 //    show the cam button [subview setHidden:false];
 }
 
+- (IBAction)StartCamera:(id)sender {
+    //    start + end the cam
+    //    didn't show until touch TakePic button
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
