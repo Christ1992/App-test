@@ -32,6 +32,12 @@
     self.capturedImages = [[NSMutableArray alloc] init];
 }
 
+// finished import + update function
+- (IBAction)PhotoLib:(id)sender {
+    //hide the cam button [subview setHidden:true];
+    [self showImage:UIImagePickerControllerSourceTypePhotoLibrary fromButton:sender];
+}
+
 - (void)showImage:(UIImagePickerControllerSourceType)sourceType fromButton:(UIBarButtonItem *)button
 {
     if (self.imageView.isAnimating)
@@ -53,7 +59,7 @@
     
     UIPopoverPresentationController *presentationController = imagePickerController.popoverPresentationController;
     presentationController.barButtonItem = button;  // display popover from the UIBarButtonItem as an anchor
-//    presentationController.permittedArrowDirections = UIPopoverArrowDirectionAny;
+    //    presentationController.permittedArrowDirections = UIPopoverArrowDirectionAny;
     
     if (sourceType == UIImagePickerControllerSourceTypeCamera)
     {
@@ -74,20 +80,6 @@
     [self presentViewController:self.imagePickerController animated:YES completion:^{
         //.. done presenting
     }];
-}
-
-- (IBAction)PhotoLib:(id)sender {
-    //hide the cam button [subview setHidden:true];
-    [self showImage:UIImagePickerControllerSourceTypePhotoLibrary fromButton:sender];
-}
-- (IBAction)TakePic:(id)sender {
-    //    use the pic
-    //    show the cam button [subview setHidden:false];
-}
-
-- (IBAction)StartCamera:(id)sender {
-    //    start + end the cam
-    //    didn't show until touch TakePic button
 }
 
 // This method is called when an image has been chosen from the library or taken from the camera.
@@ -136,6 +128,19 @@
     
     _imagePickerController = nil;
 }
+
+- (IBAction)TakePic:(id)sender {
+    //    use the pic
+    //    show the cam button [subview setHidden:false];
+}
+
+- (IBAction)StartCamera:(id)sender {
+    //    start + end the cam
+    //    didn't show until touch TakePic button
+}
+
+
+
 
 
 @end
