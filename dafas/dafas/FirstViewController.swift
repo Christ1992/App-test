@@ -15,8 +15,8 @@ class FirstViewController: UIViewController, UIImagePickerControllerDelegate, UI
     @IBAction func selectPic(_ sender: UIButton) {
         imagePicker.allowsEditing = false
         imagePicker.sourceType = .photoLibrary
-        
-        present(imagePicker, animated: true, completion: nil)
+        imagePicker .modalPresentationStyle=UIModalPresentationOverCurrentContext
+        self.present(self.imagePicker, animated: true, completion: nil)
         
     }
     override func viewDidLoad() {
