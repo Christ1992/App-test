@@ -15,6 +15,12 @@
 #import <Foundation/Foundation.h>
 
 #include "tensorflow_utils.h"
+//#include "ios_image_load.h"
+using tensorflow::Tensor;
+using tensorflow::Status;
+using tensorflow::string;
+using tensorflow::int32;
+using tensorflow::uint8;
 
 #include <pthread.h>
 #include <unistd.h>
@@ -44,44 +50,6 @@ class IfstreamInputStream : public ::google::protobuf::io::CopyingInputStream {
   std::ifstream ifs_;
 };
 }  // namespace
-
-// Returns the top N confidence values over threshold in the provided vector,
-// sorted by confidence in descending order.
-void GetTopN(const Eigen::TensorMap<Eigen::Tensor<float, 1, Eigen::RowMajor>,
-                                    Eigen::Aligned>& prediction,
-             const int num_results, const float threshold,
-             std::vector<std::pair<float, int> >* top_results) {
-  // Will contain top N results in ascending order.
-  std::priority_queue<std::pair<float, int>,
-                      std::vector<std::pair<float, int> >,
-                      std::greater<std::pair<float, int> > >
-      top_result_pq;
-
-  const int count = prediction.size();
-  for (int i = 0; i < count; ++i) {
-    const float value = prediction(i);
-
-    // Only add it if it beats the threshold and has a chance at being in
-    // the top N.
-    if (value < threshold) {
-      continue;
-    }
-
-    top_result_pq.push(std::pair<float, int>(value, i));
-
-    // If at capacity, kick the smallest value out.
-    if (top_result_pq.size() > num_results) {
-      top_result_pq.pop();
-    }
-  }
-
-  // Copy to output vector and reverse into descending order.
-  while (!top_result_pq.empty()) {
-    top_results->push_back(top_result_pq.top());
-    top_result_pq.pop();
-  }
-  std::reverse(top_results->begin(), top_results->end());
-}
 
 bool PortableReadFileToProto(const std::string& file_name,
                              ::google::protobuf::MessageLite* proto) {
@@ -144,59 +112,10 @@ tensorflow::Status LoadModel(NSString* file_name, NSString* file_type,
   return tensorflow::Status::OK();
 }
 
-tensorflow::Status LoadMemoryMappedModel(
-    NSString* file_name, NSString* file_type,
-    std::unique_ptr<tensorflow::Session>* session,
-    std::unique_ptr<tensorflow::MemmappedEnv>* memmapped_env) {
-  NSString* network_path = FilePathForResourceName(file_name, file_type);
-  memmapped_env->reset(
-      new tensorflow::MemmappedEnv(tensorflow::Env::Default()));
-  tensorflow::Status mmap_status =
-      (memmapped_env->get())->InitializeFromFile([network_path UTF8String]);
-  if (!mmap_status.ok()) {
-    LOG(ERROR) << "MMap failed with " << mmap_status.error_message();
-    return mmap_status;
-  }
 
-  tensorflow::GraphDef tensorflow_graph;
-  tensorflow::Status load_graph_status = ReadBinaryProto(
-      memmapped_env->get(),
-      tensorflow::MemmappedFileSystem::kMemmappedPackageDefaultGraphDef,
-      &tensorflow_graph);
-  if (!load_graph_status.ok()) {
-    LOG(ERROR) << "MMap load graph failed with "
-               << load_graph_status.error_message();
-    return load_graph_status;
-  }
+//tensorflow::Status LoadMemoryMappedModel(}
 
-  tensorflow::SessionOptions options;
-  // Disable optimizations on this graph so that constant folding doesn't
-  // increase the memory footprint by creating new constant copies of the weight
-  // parameters.
-  options.config.mutable_graph_options()
-      ->mutable_optimizer_options()
-      ->set_opt_level(::tensorflow::OptimizerOptions::L0);
-  options.env = memmapped_env->get();
-
-  tensorflow::Session* session_pointer = nullptr;
-  tensorflow::Status session_status =
-      tensorflow::NewSession(options, &session_pointer);
-  if (!session_status.ok()) {
-    LOG(ERROR) << "Could not create TensorFlow Session: " << session_status;
-    return session_status;
-  }
-
-  tensorflow::Status create_status = session_pointer->Create(tensorflow_graph);
-  if (!create_status.ok()) {
-    LOG(ERROR) << "Could not create TensorFlow Graph: " << create_status;
-    return create_status;
-  }
-
-  session->reset(session_pointer);
-
-  return tensorflow::Status::OK();
-}
-
+std::string line;
 tensorflow::Status LoadLabels(NSString* file_name, NSString* file_type,
                               std::vector<std::string>* label_strings) {
   // Read the label list
@@ -209,7 +128,7 @@ tensorflow::Status LoadLabels(NSString* file_name, NSString* file_type,
   }
   std::ifstream t;
   t.open([labels_path UTF8String]);
-  std::string line;
+  
   while (t) {
     std::getline(t, line);
     label_strings->push_back(line);
@@ -217,3 +136,98 @@ tensorflow::Status LoadLabels(NSString* file_name, NSString* file_type,
   t.close();
   return tensorflow::Status::OK();
 }
+
+//replacement of GettopN, runModel 调用，runmodel又是View controller里面调用的
+tensorflow::Status PrintTopDetections(std::vector<Tensor>& outputs,
+                          std::vector<float>& boxScore,
+                          std::vector<float>& boxRect,
+                          std::vector<string>& boxName,
+                          Tensor* original_tensor,
+                                      std::vector<string>& labels) {
+//    std::vector<float> locations;
+//    //size_t label_count;
+//    
+//    
+//    Tensor &indices = outputs[2];
+//    Tensor &scores = outputs[1];
+//    
+//    tensorflow::TTypes<float>::Flat scores_flat = scores.flat<float>();
+//    
+//    tensorflow::TTypes<float>::Flat indices_flat = indices.flat<float>();
+//    
+//    const Tensor& encoded_locations = outputs[0];
+//    auto locations_encoded = encoded_locations.flat<float>();
+//    
+//    LOG(INFO) << original_tensor->DebugString();
+//    const int image_width = (int)original_tensor->shape().dim_size(2);
+//    const int image_height = (int)original_tensor->shape().dim_size(1);
+//    
+//    //    tensorflow::TTypes<uint8>::Flat image_flat = original_tensor->flat<uint8>();
+//    
+////    如何替换成label？输入带上label就好
+//    object_detection::protos::StringIntLabelMap imageLabels;
+//    LoadLablesFile([FilePathForResourceName(@"mscoco_label_map", @"txt") UTF8String], &imageLabels);
+//    
+//    
+//    for (int pos = 0; pos < 20; ++pos) {
+//        const int label_index = (int32)indices_flat(pos);
+//        const float score = scores_flat(pos);
+//        
+//        if (score < 0.35) break;
+//        
+//        float left = locations_encoded(pos * 4 + 1) * image_width;
+//        float top = locations_encoded(pos * 4 + 0) * image_height;
+//        float right = locations_encoded(pos * 4 + 3) * image_width;
+//        float bottom = locations_encoded((pos * 4 + 2)) * image_height;
+//        
+//        string displayName = "";
+//        GetDisplayName(&imageLabels, displayName, label_index);
+//        
+//        LOG(INFO) << "Detection " << pos << ": "
+//        << "L:" << left << " "
+//        << "T:" << top << " "
+//        << "R:" << right << " "
+//        << "B:" << bottom << " "
+//        << "(" << pos << ") score: " << score << " Detected Name: " << displayName;
+//        
+//        boxScore.push_back(score);
+//        boxName.push_back(displayName);
+//        boxRect.push_back(left); boxRect.push_back(top); boxRect.push_back(right); boxRect.push_back(bottom);
+//        
+//
+//    }
+    
+    return Status::OK();
+}
+
+
+//是否在这运行runModel，还是controller里运行？
+//int runModel(NSString* file_name, NSString* file_type,
+//void ** image_data, int *width, int *height, int *channels,
+//std::vector<float>& boxScore,
+//std::vector<float>& boxRect,
+//std::vector<string>& boxName,
+////added labels
+//std::vector<string>& labels)
+//{
+
+
+
+
+
+
+
+//备选函数：
+//1.int GetDisplayName(const object_detection::protos::StringIntLabelMap* labels, string &displayName, int index){...}
+
+
+
+// Given an image file name, read in the data, try to decode it as an image,
+// resize it to the requested size, and then scale the values as desired. 通过文件名读取数据，载入tensor，resize后，返回tensor？
+
+//2. Status ReadTensorFromImageFile(const string& file_name, const int input_height, const int input_width,
+//                               int *width, int *height, int *channels,
+//                               const float input_mean, const float input_std,
+//                               std::vector<Tensor>* out_tensors) {
+//}
+

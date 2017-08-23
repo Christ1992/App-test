@@ -44,9 +44,15 @@ tensorflow::Status LoadLabels(NSString* file_name, NSString* file_type,
                               std::vector<std::string>* label_strings);
 
 // Sorts the results from a model execution, and returns the highest scoring.
-void GetTopN(const Eigen::TensorMap<Eigen::Tensor<float, 1, Eigen::RowMajor>,
-                                    Eigen::Aligned>& prediction,
-             const int num_results, const float threshold,
-             std::vector<std::pair<float, int> >* top_results);
+//void GetTopN(const Eigen::TensorMap<Eigen::Tensor<float, 1, Eigen::RowMajor>,
+//                                    Eigen::Aligned>& prediction,
+//             const int num_results, const float threshold,
+//             std::vector<std::pair<float, int> >* top_results);
+
+int runModel(NSString* file_name, NSString* file_type,
+             void ** image_data, int *width, int *height, int *channels,
+             std::vector<float>& boxScore,
+             std::vector<float>& boxRect,
+             std::vector<std::string>& boxName);
 
 #endif  // TENSORFLOW_CONTRIB_IOS_EXAMPLES_CAMERA_TENSORFLOW_UTILS_H_

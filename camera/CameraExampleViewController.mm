@@ -35,11 +35,10 @@ const bool model_uses_memory_mapping = false;
 static NSString* labels_file_name = @"imagenet_comp_graph_label_strings";
 static NSString* labels_file_type = @"txt";
 // These dimensions need to match those the model was trained with.
-const int wanted_input_width = 224;
-const int wanted_input_height = 224;
+const int wanted_input_width = 300;
+const int wanted_input_height = 300;
 const int wanted_input_channels = 3;
-const float input_mean = 117.0f;
-const float input_std = 1.0f;
+
 const std::string input_layer_name = "input";
 const std::string output_layer_name = "softmax1";
 
@@ -264,37 +263,6 @@ static void *AVCaptureStillImageIsCapturingStillImageContext =
   [previewLayer removeFromSuperlayer];
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath
-                      ofObject:(id)object
-                        change:(NSDictionary *)change
-                       context:(void *)context {
-  if (context == AVCaptureStillImageIsCapturingStillImageContext) {
-    BOOL isCapturingStillImage =
-        [[change objectForKey:NSKeyValueChangeNewKey] boolValue];
-
-    if (isCapturingStillImage) {
-      // do flash bulb like animation
-      flashView = [[UIView alloc] initWithFrame:[previewView frame]];
-      [flashView setBackgroundColor:[UIColor whiteColor]];
-      [flashView setAlpha:0.f];
-      [[[self view] window] addSubview:flashView];
-
-      [UIView animateWithDuration:.4f
-                       animations:^{
-                         [flashView setAlpha:1.f];
-                       }];
-    } else {
-      [UIView animateWithDuration:.4f
-          animations:^{
-            [flashView setAlpha:0.f];
-          }
-          completion:^(BOOL finished) {
-            [flashView removeFromSuperview];
-            flashView = nil;
-          }];
-    }
-  }
-}
 
 - (AVCaptureVideoOrientation)avOrientationForDeviceOrientation:
     (UIDeviceOrientation)deviceOrientation {
@@ -316,6 +284,8 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
   CFRelease(pixelBuffer);
 }
 
+//只有captureOutput里面调用了，但是上面这个函数不知道谁调用的
+//buffer传入，进行处理，通过
 - (void)runCNNOnFrame:(CVPixelBufferRef)pixelBuffer {
   assert(pixelBuffer != NULL);
 
@@ -367,13 +337,13 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
           in + (in_y * image_width * image_channels) + (in_x * image_channels);
       float *out_pixel = out_row + (x * wanted_input_channels);
       for (int c = 0; c < wanted_input_channels; ++c) {
-        out_pixel[c] = (in_pixel[c] - input_mean) / input_std;
+        out_pixel[c] = in_pixel[c];
       }
     }
   }
-
+//得到outpixel数组，解放buffer
   CVPixelBufferUnlockBaseAddress(pixelBuffer, unlockFlags);
-
+//运行模型
   if (tf_session.get()) {
     std::vector<tensorflow::Tensor> outputs;
     tensorflow::Status run_status = tf_session->Run(
@@ -381,18 +351,22 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     if (!run_status.ok()) {
       LOG(ERROR) << "Running model failed:" << run_status;
     } else {
+//        对应 outputs[0]
       tensorflow::Tensor *output = &outputs[0];
+        
       auto predictions = output->flat<float>();
-
+        // predictions是所有准确度的数组
       NSMutableDictionary *newValues = [NSMutableDictionary dictionary];
       for (int index = 0; index < predictions.size(); index += 1) {
         const float predictionValue = predictions(index);
+//        原本是穷举法的，从0-1008，每个数都对应一个准确率，大于0.05的登记下label；输出到newValue
         if (predictionValue > 0.05f) {
           std::string label = labels[index % predictions.size()];
           NSString *labelObject = [NSString stringWithUTF8String:label.c_str()];
           NSNumber *valueObject = [NSNumber numberWithFloat:predictionValue];
           [newValues setObject:valueObject forKey:labelObject];
         }
+          //std::string label = labels[index % predictions.size()];
       }
       dispatch_async(dispatch_get_main_queue(), ^(void) {
         [self setPredictionValues:newValues];
@@ -406,72 +380,12 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
   [self teardownAVCapture];
 }
 
-
-- (void)didReceiveMemoryWarning {
-  [super didReceiveMemoryWarning];
-}
-
-- (void)viewDidLoad {
-  [super viewDidLoad];
-//  square = [UIImage imageNamed:@"squarePNG"];
-    //    set up captured image array
-  self.capturedImages = [[NSMutableArray alloc] init];
-  [self setupAVCapture];
-    
-//    split
-  synth = [[AVSpeechSynthesizer alloc] init];
-  labelLayers = [[NSMutableArray alloc] init];
-  oldPredictionValues = [[NSMutableDictionary alloc] init];
-
-  tensorflow::Status load_status;
-    load_status = LoadModel(model_file_name, model_file_type, &tf_session);
-    
-  if (!load_status.ok()) {
-    LOG(FATAL) << "Couldn't load model: " << load_status;
-  }
-
-  tensorflow::Status labels_status =
-      LoadLabels(labels_file_name, labels_file_type, &labels);
-  if (!labels_status.ok()) {
-    LOG(FATAL) << "Couldn't load labels: " << labels_status;
-  }
-  [self setupAVCapture];
-}
-
-- (void)viewDidUnload {
-  [super viewDidUnload];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-  [super viewWillAppear:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-  [super viewDidAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-  [super viewWillDisappear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated {
-  [super viewDidDisappear:animated];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:
-    (UIInterfaceOrientation)interfaceOrientation {
-  return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-- (BOOL)prefersStatusBarHidden {
-  return YES;
-}
-
+//可以不要了，因为不记录历史数据
 - (void)setPredictionValues:(NSDictionary *)newValues {
   const float decayValue = 0.75f;
   const float updateValue = 0.25f;
   const float minimumThreshold = 0.01f;
-
+//旧的updatedValue：dic*0.75+新的*0.25，整理后付给oldDic
   NSMutableDictionary *decayedPredictionValues =
       [[NSMutableDictionary alloc] init];
   for (NSString *label in oldPredictionValues) {
@@ -516,11 +430,14 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
       candidateLabels = [candidateLabels arrayByAddingObject:entry];
     }
   }
+//  得到所有候选的label和value，降序排列
+    
   NSSortDescriptor *sort =
       [NSSortDescriptor sortDescriptorWithKey:@"value" ascending:NO];
   NSArray *sortedLabels = [candidateLabels
       sortedArrayUsingDescriptors:[NSArray arrayWithObject:sort]];
 
+//    开始画图
   const float leftMargin = 10.0f;
   const float topMargin = 10.0f;
 
@@ -576,6 +493,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
   }
 }
 
+//删除所有的文字
 - (void)removeAllLabelLayers {
   for (CATextLayer *layer in labelLayers) {
     [layer removeFromSuperlayer];
@@ -655,6 +573,66 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
   utterance.voice = [AVSpeechSynthesisVoice voiceWithLanguage:@"en-US"];
   utterance.rate = 0.75 * AVSpeechUtteranceDefaultSpeechRate;
   [synth speakUtterance:utterance];
+}
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    //  square = [UIImage imageNamed:@"squarePNG"];
+    //    set up captured image array
+    self.capturedImages = [[NSMutableArray alloc] init];
+    self.runStopBtn.hidden=YES;
+    [self setupAVCapture];
+    
+    //    split
+    synth = [[AVSpeechSynthesizer alloc] init];
+    labelLayers = [[NSMutableArray alloc] init];
+    oldPredictionValues = [[NSMutableDictionary alloc] init];
+    
+    tensorflow::Status load_status;
+    load_status = LoadModel(model_file_name, model_file_type, &tf_session);
+    
+    if (!load_status.ok()) {
+        LOG(FATAL) << "Couldn't load model: " << load_status;
+    }
+    
+    tensorflow::Status labels_status =
+    LoadLabels(labels_file_name, labels_file_type, &labels);
+    if (!labels_status.ok()) {
+        LOG(FATAL) << "Couldn't load labels: " << labels_status;
+    }
+    [self setupAVCapture];
+}
+
+- (void)viewDidUnload {
+    [super viewDidUnload];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:
+(UIInterfaceOrientation)interfaceOrientation {
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (BOOL)prefersStatusBarHidden {
+    return YES;
 }
 
 @end
