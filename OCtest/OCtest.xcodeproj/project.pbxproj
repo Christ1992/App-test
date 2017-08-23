@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F8B74723C37F2C439A22E98 /* libPods-OCtest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 87DE64B049123A4046814912 /* libPods-OCtest.a */; };
 		AFD60DEE1F4BBA190052E974 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AFD60DED1F4BBA190052E974 /* main.m */; };
 		AFD60DF11F4BBA190052E974 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AFD60DF01F4BBA190052E974 /* AppDelegate.m */; };
 		AFD60DF41F4BBA190052E974 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AFD60DF31F4BBA190052E974 /* ViewController.m */; };
@@ -15,6 +16,13 @@
 		AFD60DFC1F4BBA190052E974 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFD60DFA1F4BBA190052E974 /* LaunchScreen.storyboard */; };
 		AFD60E071F4BBA190052E974 /* OCtestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AFD60E061F4BBA190052E974 /* OCtestTests.m */; };
 		AFD60E121F4BBA190052E974 /* OCtestUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = AFD60E111F4BBA190052E974 /* OCtestUITests.m */; };
+		AFFBE8581F4D08AC00F3BDAB /* tensorflow_utils.mm in Sources */ = {isa = PBXBuildFile; fileRef = AFFBE8561F4D08AC00F3BDAB /* tensorflow_utils.mm */; };
+		AFFBE8591F4D08AC00F3BDAB /* tf_root.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = AFFBE8571F4D08AC00F3BDAB /* tf_root.xcconfig */; };
+		AFFBE85C1F4D0A1F00F3BDAB /* libtensorflow-core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AFFBE85B1F4D0A1F00F3BDAB /* libtensorflow-core.a */; };
+		AFFBE85F1F4D0A3900F3BDAB /* libprotobuf-lite.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AFFBE85D1F4D0A3900F3BDAB /* libprotobuf-lite.a */; };
+		AFFBE8601F4D0A3900F3BDAB /* libprotobuf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AFFBE85E1F4D0A3900F3BDAB /* libprotobuf.a */; };
+		AFFBE8621F4D0A5200F3BDAB /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFFBE8611F4D0A5200F3BDAB /* Accelerate.framework */; };
+		AFFBE8651F4D0C5400F3BDAB /* ios_image_load.mm in Sources */ = {isa = PBXBuildFile; fileRef = AFFBE8641F4D0C5400F3BDAB /* ios_image_load.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +43,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		17278C052DBCA038C0E83A80 /* Pods-OCtest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OCtest.release.xcconfig"; path = "Pods/Target Support Files/Pods-OCtest/Pods-OCtest.release.xcconfig"; sourceTree = "<group>"; };
+		3F57FD20E70D1091FFE9137A /* Pods-OCtest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OCtest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OCtest/Pods-OCtest.debug.xcconfig"; sourceTree = "<group>"; };
+		87DE64B049123A4046814912 /* libPods-OCtest.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-OCtest.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFD60DE91F4BBA190052E974 /* OCtest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OCtest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFD60DED1F4BBA190052E974 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AFD60DEF1F4BBA190052E974 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -51,6 +62,15 @@
 		AFD60E0D1F4BBA190052E974 /* OCtestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OCtestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFD60E111F4BBA190052E974 /* OCtestUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OCtestUITests.m; sourceTree = "<group>"; };
 		AFD60E131F4BBA190052E974 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AFFBE8551F4D08AC00F3BDAB /* tensorflow_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tensorflow_utils.h; sourceTree = "<group>"; };
+		AFFBE8561F4D08AC00F3BDAB /* tensorflow_utils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = tensorflow_utils.mm; sourceTree = "<group>"; };
+		AFFBE8571F4D08AC00F3BDAB /* tf_root.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = tf_root.xcconfig; sourceTree = "<group>"; };
+		AFFBE85B1F4D0A1F00F3BDAB /* libtensorflow-core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libtensorflow-core.a"; path = "../../../../contrib/makefile/gen/lib/libtensorflow-core.a"; sourceTree = "<group>"; };
+		AFFBE85D1F4D0A3900F3BDAB /* libprotobuf-lite.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libprotobuf-lite.a"; path = "../../../../contrib/makefile/gen/protobuf_ios/lib/libprotobuf-lite.a"; sourceTree = "<group>"; };
+		AFFBE85E1F4D0A3900F3BDAB /* libprotobuf.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libprotobuf.a; path = ../../../../contrib/makefile/gen/protobuf_ios/lib/libprotobuf.a; sourceTree = "<group>"; };
+		AFFBE8611F4D0A5200F3BDAB /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		AFFBE8631F4D0C5400F3BDAB /* ios_image_load.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_image_load.h; sourceTree = "<group>"; };
+		AFFBE8641F4D0C5400F3BDAB /* ios_image_load.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ios_image_load.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +78,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFFBE8621F4D0A5200F3BDAB /* Accelerate.framework in Frameworks */,
+				AFFBE85F1F4D0A3900F3BDAB /* libprotobuf-lite.a in Frameworks */,
+				AFFBE8601F4D0A3900F3BDAB /* libprotobuf.a in Frameworks */,
+				AFFBE85C1F4D0A1F00F3BDAB /* libtensorflow-core.a in Frameworks */,
+				4F8B74723C37F2C439A22E98 /* libPods-OCtest.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +103,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7628AE6C8AAC365CD0D86881 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3F57FD20E70D1091FFE9137A /* Pods-OCtest.debug.xcconfig */,
+				17278C052DBCA038C0E83A80 /* Pods-OCtest.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		AFD60DE01F4BBA190052E974 = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +119,8 @@
 				AFD60E051F4BBA190052E974 /* OCtestTests */,
 				AFD60E101F4BBA190052E974 /* OCtestUITests */,
 				AFD60DEA1F4BBA190052E974 /* Products */,
+				AFFBE85A1F4D0A1F00F3BDAB /* Frameworks */,
+				7628AE6C8AAC365CD0D86881 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,10 +137,15 @@
 		AFD60DEB1F4BBA190052E974 /* OCtest */ = {
 			isa = PBXGroup;
 			children = (
+				AFFBE8571F4D08AC00F3BDAB /* tf_root.xcconfig */,
 				AFD60DEF1F4BBA190052E974 /* AppDelegate.h */,
 				AFD60DF01F4BBA190052E974 /* AppDelegate.m */,
+				AFFBE8551F4D08AC00F3BDAB /* tensorflow_utils.h */,
+				AFFBE8561F4D08AC00F3BDAB /* tensorflow_utils.mm */,
 				AFD60DF21F4BBA190052E974 /* ViewController.h */,
 				AFD60DF31F4BBA190052E974 /* ViewController.m */,
+				AFFBE8631F4D0C5400F3BDAB /* ios_image_load.h */,
+				AFFBE8641F4D0C5400F3BDAB /* ios_image_load.mm */,
 				AFD60DF51F4BBA190052E974 /* Main.storyboard */,
 				AFD60DF81F4BBA190052E974 /* Assets.xcassets */,
 				AFD60DFA1F4BBA190052E974 /* LaunchScreen.storyboard */,
@@ -140,6 +181,18 @@
 			path = OCtestUITests;
 			sourceTree = "<group>";
 		};
+		AFFBE85A1F4D0A1F00F3BDAB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AFFBE8611F4D0A5200F3BDAB /* Accelerate.framework */,
+				AFFBE85D1F4D0A3900F3BDAB /* libprotobuf-lite.a */,
+				AFFBE85E1F4D0A3900F3BDAB /* libprotobuf.a */,
+				AFFBE85B1F4D0A1F00F3BDAB /* libtensorflow-core.a */,
+				87DE64B049123A4046814912 /* libPods-OCtest.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -147,9 +200,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AFD60E161F4BBA190052E974 /* Build configuration list for PBXNativeTarget "OCtest" */;
 			buildPhases = (
+				D113D318455ACE88C3200EFF /* [CP] Check Pods Manifest.lock */,
 				AFD60DE51F4BBA190052E974 /* Sources */,
 				AFD60DE61F4BBA190052E974 /* Frameworks */,
 				AFD60DE71F4BBA190052E974 /* Resources */,
+				21EB5F294F8739AD02885D27 /* [CP] Embed Pods Frameworks */,
+				7375539AEBB58F9CC4AEA63E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -247,6 +303,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFFBE8591F4D08AC00F3BDAB /* tf_root.xcconfig in Resources */,
 				AFD60DFC1F4BBA190052E974 /* LaunchScreen.storyboard in Resources */,
 				AFD60DF91F4BBA190052E974 /* Assets.xcassets in Resources */,
 				AFD60DF71F4BBA190052E974 /* Main.storyboard in Resources */,
@@ -269,6 +326,57 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		21EB5F294F8739AD02885D27 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OCtest/Pods-OCtest-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7375539AEBB58F9CC4AEA63E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OCtest/Pods-OCtest-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D113D318455ACE88C3200EFF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-OCtest-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		AFD60DE51F4BBA190052E974 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -276,6 +384,8 @@
 			files = (
 				AFD60DF41F4BBA190052E974 /* ViewController.m in Sources */,
 				AFD60DF11F4BBA190052E974 /* AppDelegate.m in Sources */,
+				AFFBE8581F4D08AC00F3BDAB /* tensorflow_utils.mm in Sources */,
+				AFFBE8651F4D0C5400F3BDAB /* ios_image_load.mm in Sources */,
 				AFD60DEE1F4BBA190052E974 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -425,11 +535,32 @@
 		};
 		AFD60E171F4BBA190052E974 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3F57FD20E70D1091FFE9137A /* Pods-OCtest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				DEVELOPMENT_TEAM = XBP8Y7FXNL;
+				ENABLE_BITCODE = NO;
+				GCC_INPUT_FILETYPE = automatic;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(TF_ROOT)",
+					"$(TF_ROOT)/tensorflow/contrib/makefile/downloads",
+					"$(TF_ROOT)/tensorflow/contrib/makefile/downloads/eigen",
+					"$(TF_ROOT)/tensorflow/contrib/makefile/downloads/protobuf/src",
+					"$(TF_ROOT)/tensorflow/contrib/makefile/gen/proto",
+				);
 				INFOPLIST_FILE = OCtest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(TF_ROOT)/tensorflow/contrib/makefile/gen/lib",
+					"$(TF_ROOT)/tensorflow/contrib/makefile/gen/protobuf_ios/lib",
+				);
+				OTHER_LDFLAGS = (
+					"-force_load",
+					"$(TF_ROOT)/tensorflow/contrib/makefile/gen/lib/libtensorflow-core.a",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = yingjie2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -437,11 +568,32 @@
 		};
 		AFD60E181F4BBA190052E974 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 17278C052DBCA038C0E83A80 /* Pods-OCtest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				DEVELOPMENT_TEAM = XBP8Y7FXNL;
+				ENABLE_BITCODE = NO;
+				GCC_INPUT_FILETYPE = automatic;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(TF_ROOT)",
+					"$(TF_ROOT)/tensorflow/contrib/makefile/downloads",
+					"$(TF_ROOT)/tensorflow/contrib/makefile/downloads/eigen",
+					"$(TF_ROOT)/tensorflow/contrib/makefile/downloads/protobuf/src",
+					"$(TF_ROOT)/tensorflow/contrib/makefile/gen/proto",
+				);
 				INFOPLIST_FILE = OCtest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(TF_ROOT)/tensorflow/contrib/makefile/gen/lib",
+					"$(TF_ROOT)/tensorflow/contrib/makefile/gen/protobuf_ios/lib",
+				);
+				OTHER_LDFLAGS = (
+					"-force_load",
+					"$(TF_ROOT)/tensorflow/contrib/makefile/gen/lib/libtensorflow-core.a",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = yingjie2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -512,6 +664,7 @@
 				AFD60E181F4BBA190052E974 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AFD60E191F4BBA190052E974 /* Build configuration list for PBXNativeTarget "OCtestTests" */ = {
 			isa = XCConfigurationList;
@@ -520,6 +673,7 @@
 				AFD60E1B1F4BBA190052E974 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AFD60E1C1F4BBA190052E974 /* Build configuration list for PBXNativeTarget "OCtestUITests" */ = {
 			isa = XCConfigurationList;
@@ -528,6 +682,7 @@
 				AFD60E1E1F4BBA190052E974 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
