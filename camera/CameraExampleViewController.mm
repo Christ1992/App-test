@@ -49,74 +49,214 @@ static void *AVCaptureStillImageIsCapturingStillImageContext =
 @interface CameraExampleViewController (InternalMethods)
 - (void)setupAVCapture;
 - (void)teardownAVCapture;
+
 @end
 
 @implementation CameraExampleViewController
+- (IBAction)PhotoLib:(id)sender {
+    //   相机关闭，pre层消失。相机按钮消失。imaview出现，text消失
+    [session stopRunning];
+    previewView.hidden=YES;
+    textView.hidden=YES;
+    self.runStopBtn.hidden=YES;
+    imageView.hidden=NO;
+    
+    [self showImage:UIImagePickerControllerSourceTypePhotoLibrary fromButton:sender];
+}
+//展示照片
+- (void)showImage:(UIImagePickerControllerSourceType)sourceType fromButton:(UIBarButtonItem *)button
+{
+    if (imageView.isAnimating)
+    {
+        [imageView stopAnimating];
+    }
+    
+    if (self.capturedImages.count > 0)
+    {
+        [self.capturedImages removeAllObjects];
+    }
+    
+    UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+    imagePickerController.modalPresentationStyle = UIModalPresentationCurrentContext;
+    imagePickerController.sourceType = sourceType;
+    imagePickerController.delegate = self;
+    imagePickerController.modalPresentationStyle =
+    (sourceType == UIImagePickerControllerSourceTypeCamera) ? UIModalPresentationFullScreen : UIModalPresentationPopover;
+    
+    UIPopoverPresentationController *presentationController = imagePickerController.popoverPresentationController;
+    presentationController.barButtonItem = button;  // display popover from the UIBarButtonItem as an anchor
+    //    presentationController.permittedArrowDirections = UIPopoverArrowDirectionAny;
+    
+    if (sourceType == UIImagePickerControllerSourceTypeCamera)
+    {
+        // The user wants to use the camera interface. Set up our custom overlay view for the camera.
+        imagePickerController.showsCameraControls = NO;
+        
+        /*
+         Load the overlay view from the OverlayView nib file. Self is the File's Owner for the nib file, so the overlayView outlet is set to the main view in the nib. Pass that view to the image picker controller to use as its overlay view, and set self's reference to the view to nil.
+         */
+        [[NSBundle mainBundle] loadNibNamed:@"OverlayView" owner:self options:nil];
+        self.overlayView.frame = imagePickerController.cameraOverlayView.frame;
+        imagePickerController.cameraOverlayView = self.overlayView;
+        self.overlayView = nil;
+    }
+    
+    _imagePickerController = imagePickerController; // we need this for later
+    
+    [self presentViewController:self.imagePickerController animated:YES completion:^{
+        //.. done presenting
+    }];
+}
+// This method is called when an image has been chosen from the library or taken from the camera.
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
+    [self.capturedImages addObject:image];
+    
+    [self finishAndUpdate];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker
+{
+    [self dismissViewControllerAnimated:YES completion:^{
+        //.. done dismissing
+    }];
+    [textView setHidden:NO];
+    
+}
+
+- (void)finishAndUpdate
+{
+    // Dismiss the image picker.
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [imageView setImage:[self.capturedImages objectAtIndex:0]];
+//
+//    void * image_data = nil;
+//    int width;
+//    int height;
+//    int channels;
+//    
+//    std::vector<float> boxScore;
+//    std::vector<float> boxRect;
+//    std::vector<std::string> boxName;
+//    
+//    int ret = runModel(&image_data, &width, &height, &channels, boxScore, boxRect, boxName);
+//    
+    
+    [textView setHidden:YES];
+    // To be ready to start again, clear the captured images array.
+    [self.capturedImages removeAllObjects];
+    _imagePickerController = nil;
+}
+
+
+- (IBAction)TakePic:(id)sender {
+    //   相机打开，pre层出现。相机按钮出现。imavie消失,text消失
+    [self.capturedImages removeAllObjects];
+    _imagePickerController = nil;
+    textView.hidden=YES;
+    previewView.hidden=NO;
+    imageView.hidden=YES;
+    self.runStopBtn.hidden=NO;
+    
+    //    run the previewView
+    [session startRunning];
+}
+
+- (IBAction)FreezeCam:(id)sender {
+    //      截取画面，相机按钮变化。
+    if ([session isRunning]) {
+        [session stopRunning];
+        [sender setTitle:@"Continue" forState:UIControlStateNormal];
+        
+        flashView = [[UIView alloc] initWithFrame:[previewView frame]];
+        [flashView setBackgroundColor:[UIColor whiteColor]];
+        [flashView setAlpha:0.f];
+        [[[self view] window] addSubview:flashView];
+        
+        [UIView animateWithDuration:.2f
+                         animations:^{
+                             [flashView setAlpha:1.f];
+                         }
+                         completion:^(BOOL finished) {
+                             [UIView animateWithDuration:.2f
+                                              animations:^{
+                                                  [flashView setAlpha:0.f];
+                                              }
+                                              completion:^(BOOL finished) {
+                                                  [flashView removeFromSuperview];
+                                                  flashView = nil;
+                                              }];
+                         }];
+        
+    } else {
+        [session startRunning];
+        [sender setTitle:@"Freeze Frame" forState:UIControlStateNormal];
+    }
+}
 
 - (void)setupAVCapture {
-  NSError *error = nil;
-
-  session = [AVCaptureSession new];
-  if ([[UIDevice currentDevice] userInterfaceIdiom] ==
-      UIUserInterfaceIdiomPhone)
-    [session setSessionPreset:AVCaptureSessionPreset640x480];
-  else
-    [session setSessionPreset:AVCaptureSessionPresetPhoto];
-
-  AVCaptureDevice *device =
-      [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-  AVCaptureDeviceInput *deviceInput =
-      [AVCaptureDeviceInput deviceInputWithDevice:device error:&error];
-  assert(error == nil);
-
-  isUsingFrontFacingCamera = NO;
-  if ([session canAddInput:deviceInput]) [session addInput:deviceInput];
-
-  stillImageOutput = [AVCaptureStillImageOutput new];
-  [stillImageOutput
-      addObserver:self
-       forKeyPath:@"capturingStillImage"
-          options:NSKeyValueObservingOptionNew
-          context:(void *)(AVCaptureStillImageIsCapturingStillImageContext)];
-  if ([session canAddOutput:stillImageOutput])
-    [session addOutput:stillImageOutput];
-
-  videoDataOutput = [AVCaptureVideoDataOutput new];
-
-  NSDictionary *rgbOutputSettings = [NSDictionary
-      dictionaryWithObject:[NSNumber numberWithInt:kCMPixelFormat_32BGRA]
-                    forKey:(id)kCVPixelBufferPixelFormatTypeKey];
-  [videoDataOutput setVideoSettings:rgbOutputSettings];
-  [videoDataOutput setAlwaysDiscardsLateVideoFrames:YES];
-  videoDataOutputQueue =
-      dispatch_queue_create("VideoDataOutputQueue", DISPATCH_QUEUE_SERIAL);
-  [videoDataOutput setSampleBufferDelegate:self queue:videoDataOutputQueue];
-
-  if ([session canAddOutput:videoDataOutput])
-    [session addOutput:videoDataOutput];
-  [[videoDataOutput connectionWithMediaType:AVMediaTypeVideo] setEnabled:YES];
-
-  previewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:session];
-  [previewLayer setBackgroundColor:[[UIColor blackColor] CGColor]];
-  [previewLayer setVideoGravity:AVLayerVideoGravityResizeAspect];
-  CALayer *rootLayer = [previewView layer];
-  [rootLayer setMasksToBounds:YES];
-  [previewLayer setFrame:[rootLayer bounds]];
-  [rootLayer addSublayer:previewLayer];
-  [session startRunning];
-
-  if (error) {
-    NSString *title = [NSString stringWithFormat:@"Failed with error %d", (int)[error code]];
-    UIAlertController *alertController =
+    NSError *error = nil;
+    
+    session = [AVCaptureSession new];
+    if ([[UIDevice currentDevice] userInterfaceIdiom] ==
+        UIUserInterfaceIdiomPhone)
+        [session setSessionPreset:AVCaptureSessionPreset640x480];
+    else
+        [session setSessionPreset:AVCaptureSessionPresetPhoto];
+    
+    AVCaptureDevice *device =
+    [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    AVCaptureDeviceInput *deviceInput = [AVCaptureDeviceInput deviceInputWithDevice:device error:&error];
+    assert(error == nil);
+    
+    if ([session canAddInput:deviceInput]) [session addInput:deviceInput];
+    
+    stillImageOutput = [AVCaptureStillImageOutput new];
+    [stillImageOutput
+     addObserver:self
+     forKeyPath:@"capturingStillImage"
+     options:NSKeyValueObservingOptionNew
+     context:(void *)(AVCaptureStillImageIsCapturingStillImageContext)];
+    if ([session canAddOutput:stillImageOutput])
+        [session addOutput:stillImageOutput];
+    
+    videoDataOutput = [AVCaptureVideoDataOutput new];
+    
+    NSDictionary *rgbOutputSettings = [NSDictionary
+                                       dictionaryWithObject:[NSNumber numberWithInt:kCMPixelFormat_32BGRA]
+                                       forKey:(id)kCVPixelBufferPixelFormatTypeKey];
+    [videoDataOutput setVideoSettings:rgbOutputSettings];
+    [videoDataOutput setAlwaysDiscardsLateVideoFrames:YES];
+    videoDataOutputQueue =  dispatch_queue_create("VideoDataOutputQueue", DISPATCH_QUEUE_SERIAL);
+    [videoDataOutput setSampleBufferDelegate:self queue:videoDataOutputQueue];
+    
+    if ([session canAddOutput:videoDataOutput])
+        [session addOutput:videoDataOutput];
+    [[videoDataOutput connectionWithMediaType:AVMediaTypeVideo] setEnabled:YES];
+    
+    previewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:session];
+    //    [previewLayer setBackgroundColor:[[UIColor whiteColor] CGColor]];
+    [previewLayer setVideoGravity:AVLayerVideoGravityResizeAspect];
+    CALayer *rootLayer = [previewView layer];
+    [rootLayer setMasksToBounds:YES];
+    [previewLayer setFrame:[rootLayer bounds]];
+    [rootLayer addSublayer:previewLayer];
+    
+    
+    if (error) {
+        NSString *title = [NSString stringWithFormat:@"Failed with error %d", (int)[error code]];
+        UIAlertController *alertController =
         [UIAlertController alertControllerWithTitle:title
                                             message:[error localizedDescription]
                                      preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *dismiss =
+        UIAlertAction *dismiss =
         [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleDefault handler:nil];
-    [alertController addAction:dismiss];
-    [self presentViewController:alertController animated:YES completion:nil];
-    [self teardownAVCapture];
-  }
+        [alertController addAction:dismiss];
+        [self presentViewController:alertController animated:YES completion:nil];
+        [self teardownAVCapture];
+    }
+    
 }
 
 - (void)teardownAVCapture {
@@ -165,84 +305,6 @@ static void *AVCaptureStillImageIsCapturingStillImageContext =
   else if (deviceOrientation == UIDeviceOrientationLandscapeRight)
     result = AVCaptureVideoOrientationLandscapeLeft;
   return result;
-}
-
-- (IBAction)takePicture:(id)sender {
-  if ([session isRunning]) {
-    [session stopRunning];
-    [sender setTitle:@"Continue" forState:UIControlStateNormal];
-
-    flashView = [[UIView alloc] initWithFrame:[previewView frame]];
-    [flashView setBackgroundColor:[UIColor whiteColor]];
-    [flashView setAlpha:0.f];
-    [[[self view] window] addSubview:flashView];
-
-    [UIView animateWithDuration:.2f
-        animations:^{
-          [flashView setAlpha:1.f];
-        }
-        completion:^(BOOL finished) {
-          [UIView animateWithDuration:.2f
-              animations:^{
-                [flashView setAlpha:0.f];
-              }
-              completion:^(BOOL finished) {
-                [flashView removeFromSuperview];
-                flashView = nil;
-              }];
-        }];
-
-  } else {
-    [session startRunning];
-    [sender setTitle:@"Freeze Frame" forState:UIControlStateNormal];
-  }
-}
-
-+ (CGRect)videoPreviewBoxForGravity:(NSString *)gravity
-                          frameSize:(CGSize)frameSize
-                       apertureSize:(CGSize)apertureSize {
-  CGFloat apertureRatio = apertureSize.height / apertureSize.width;
-  CGFloat viewRatio = frameSize.width / frameSize.height;
-
-  CGSize size = CGSizeZero;
-  if ([gravity isEqualToString:AVLayerVideoGravityResizeAspectFill]) {
-    if (viewRatio > apertureRatio) {
-      size.width = frameSize.width;
-      size.height =
-          apertureSize.width * (frameSize.width / apertureSize.height);
-    } else {
-      size.width =
-          apertureSize.height * (frameSize.height / apertureSize.width);
-      size.height = frameSize.height;
-    }
-  } else if ([gravity isEqualToString:AVLayerVideoGravityResizeAspect]) {
-    if (viewRatio > apertureRatio) {
-      size.width =
-          apertureSize.height * (frameSize.height / apertureSize.width);
-      size.height = frameSize.height;
-    } else {
-      size.width = frameSize.width;
-      size.height =
-          apertureSize.width * (frameSize.width / apertureSize.height);
-    }
-  } else if ([gravity isEqualToString:AVLayerVideoGravityResize]) {
-    size.width = frameSize.width;
-    size.height = frameSize.height;
-  }
-
-  CGRect videoBox;
-  videoBox.size = size;
-  if (size.width < frameSize.width)
-    videoBox.origin.x = (frameSize.width - size.width) / 2;
-  else
-    videoBox.origin.x = (size.width - frameSize.width) / 2;
-
-  if (size.height < frameSize.height)
-    videoBox.origin.y = (frameSize.height - size.height) / 2;
-  else
-    videoBox.origin.y = (size.height - frameSize.height) / 2;
-
-  return videoBox;
 }
 
 - (void)captureOutput:(AVCaptureOutput *)captureOutput
@@ -344,30 +406,6 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
   [self teardownAVCapture];
 }
 
-// use front/back camera
-- (IBAction)switchCameras:(id)sender {
-  AVCaptureDevicePosition desiredPosition;
-  if (isUsingFrontFacingCamera)
-    desiredPosition = AVCaptureDevicePositionBack;
-  else
-    desiredPosition = AVCaptureDevicePositionFront;
-
-  for (AVCaptureDevice *d in
-       [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo]) {
-    if ([d position] == desiredPosition) {
-      [[previewLayer session] beginConfiguration];
-      AVCaptureDeviceInput *input =
-          [AVCaptureDeviceInput deviceInputWithDevice:d error:nil];
-      for (AVCaptureInput *oldInput in [[previewLayer session] inputs]) {
-        [[previewLayer session] removeInput:oldInput];
-      }
-      [[previewLayer session] addInput:input];
-      [[previewLayer session] commitConfiguration];
-      break;
-    }
-  }
-  isUsingFrontFacingCamera = !isUsingFrontFacingCamera;
-}
 
 - (void)didReceiveMemoryWarning {
   [super didReceiveMemoryWarning];
@@ -375,18 +413,19 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  square = [UIImage imageNamed:@"squarePNG"];
+//  square = [UIImage imageNamed:@"squarePNG"];
+    //    set up captured image array
+  self.capturedImages = [[NSMutableArray alloc] init];
+  [self setupAVCapture];
+    
+//    split
   synth = [[AVSpeechSynthesizer alloc] init];
   labelLayers = [[NSMutableArray alloc] init];
   oldPredictionValues = [[NSMutableDictionary alloc] init];
 
   tensorflow::Status load_status;
-  if (model_uses_memory_mapping) {
-    load_status = LoadMemoryMappedModel(
-        model_file_name, model_file_type, &tf_session, &tf_memmapped_env);
-  } else {
     load_status = LoadModel(model_file_name, model_file_type, &tf_session);
-  }
+    
   if (!load_status.ok()) {
     LOG(FATAL) << "Couldn't load model: " << load_status;
   }

@@ -1,46 +1,108 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES" initialViewController="2">
+    <device id="retina4_0" orientation="landscape">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Camera Example View Controller-->
         <scene sceneID="5">
             <objects>
                 <viewController id="2" customClass="CameraExampleViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="D5S-Mr-hlK"/>
+                        <viewControllerLayoutGuide type="bottom" id="VV9-Cn-RAj"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="3">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="568" height="320"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" id="12">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="522"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                <gestureRecognizers/>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="iD8-yH-eWH">
-                                <rect key="frame" x="0.0" y="454" width="320" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="20"/>
-                                <state key="normal" title="Freeze Frame">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="u2v-9I-gsA">
+                                <rect key="frame" x="0.0" y="20" width="568" height="256"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Eqg-0T-LZH">
+                                <rect key="frame" x="0.0" y="20" width="568" height="256"/>
+                            </imageView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dze-y2-JWe">
+                                <rect key="frame" x="0.0" y="276" width="568" height="44"/>
+                                <items>
+                                    <barButtonItem systemItem="bookmarks" id="fLD-jS-a2f">
+                                        <connections>
+                                            <action selector="PhotoLib:" destination="2" id="2YB-Zx-u4k"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="TXT-Xv-H2L"/>
+                                    <barButtonItem systemItem="camera" id="fHr-o0-I8O">
+                                        <connections>
+                                            <action selector="TakePic:" destination="2" id="FIV-OO-8BI"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fZa-6I-szD">
+                                <rect key="frame" x="234" y="216" width="100" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="UN2-Za-rYg"/>
+                                </constraints>
+                                <state key="normal" title="Freeze Frame"/>
                                 <connections>
-                                    <action selector="takePicture:" destination="2" eventType="touchUpInside" id="BTy-7E-XUS"/>
+                                    <action selector="FreezeCam:" destination="2" eventType="touchUpInside" id="SUB-uf-w6w"/>
                                 </connections>
                             </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="57d-ja-3zk">
+                                <rect key="frame" x="67" y="70" width="434" height="176"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Please choose a picture from phone album or use the camera for real-time detection.">
+                                        <attributes>
+                                            <font key="NSFont" size="24" name="GillSans"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="VV9-Cn-RAj" firstAttribute="top" secondItem="u2v-9I-gsA" secondAttribute="bottom" constant="44" id="83Q-z2-So7"/>
+                            <constraint firstItem="57d-ja-3zk" firstAttribute="bottom" secondItem="fZa-6I-szD" secondAttribute="bottom" id="9bG-j5-ccA"/>
+                            <constraint firstAttribute="trailing" secondItem="u2v-9I-gsA" secondAttribute="trailing" id="Epq-f0-Zpy"/>
+                            <constraint firstItem="Eqg-0T-LZH" firstAttribute="top" secondItem="D5S-Mr-hlK" secondAttribute="bottom" id="IGc-CG-nrN"/>
+                            <constraint firstItem="Eqg-0T-LZH" firstAttribute="leading" secondItem="3" secondAttribute="leading" id="KnA-FG-obg"/>
+                            <constraint firstItem="dze-y2-JWe" firstAttribute="leading" secondItem="3" secondAttribute="leading" id="Uz5-xK-dyS"/>
+                            <constraint firstItem="u2v-9I-gsA" firstAttribute="leading" secondItem="3" secondAttribute="leading" id="b6Z-5h-vfX"/>
+                            <constraint firstItem="57d-ja-3zk" firstAttribute="leading" secondItem="3" secondAttribute="leadingMargin" constant="47" id="cws-hT-iBr"/>
+                            <constraint firstAttribute="bottom" secondItem="Eqg-0T-LZH" secondAttribute="bottom" constant="44" id="dPo-DO-My6"/>
+                            <constraint firstItem="fZa-6I-szD" firstAttribute="centerX" secondItem="3" secondAttribute="centerX" id="diF-yc-vjt"/>
+                            <constraint firstItem="57d-ja-3zk" firstAttribute="centerX" secondItem="3" secondAttribute="centerX" id="glG-rL-nWp"/>
+                            <constraint firstItem="57d-ja-3zk" firstAttribute="top" secondItem="D5S-Mr-hlK" secondAttribute="bottom" constant="50" id="hO7-6u-eq3" userLabel="Text View.top = Top Layout Guide.bottom + 70"/>
+                            <constraint firstItem="u2v-9I-gsA" firstAttribute="top" secondItem="D5S-Mr-hlK" secondAttribute="bottom" id="iJ9-3C-lll"/>
+                            <constraint firstAttribute="trailing" secondItem="Eqg-0T-LZH" secondAttribute="trailing" id="ine-wo-2Tb"/>
+                            <constraint firstItem="dze-y2-JWe" firstAttribute="top" secondItem="fZa-6I-szD" secondAttribute="bottom" constant="30" id="kDS-6c-y90"/>
+                            <constraint firstItem="VV9-Cn-RAj" firstAttribute="top" secondItem="dze-y2-JWe" secondAttribute="bottom" id="n3H-5R-nJA"/>
+                            <constraint firstAttribute="trailing" secondItem="dze-y2-JWe" secondAttribute="trailing" id="zBW-ZL-vpu"/>
+                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="previewView" destination="12" id="13"/>
+                        <outlet property="imageView" destination="u2v-9I-gsA" id="etw-wn-xUR"/>
+                        <outlet property="previewView" destination="Eqg-0T-LZH" id="Vdd-7O-Qiz"/>
+                        <outlet property="runStopBtn" destination="fZa-6I-szD" id="1ng-va-t4P"/>
+                        <outlet property="textView" destination="57d-ja-3zk" id="BsT-JF-ezw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
     </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation" orientation="landscapeRight"/>
+        <simulatedScreenMetrics key="destination" type="retina4_0.fullscreen"/>
+    </simulatedMetricsContainer>
 </document>

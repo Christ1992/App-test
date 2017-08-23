@@ -21,16 +21,18 @@
 
 @interface CameraExampleViewController
     : UIViewController<UIGestureRecognizerDelegate,
-                       AVCaptureVideoDataOutputSampleBufferDelegate> {
+                       AVCaptureVideoDataOutputSampleBufferDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
   IBOutlet UIView *previewView;
-  IBOutlet UISegmentedControl *camerasControl;
+  IBOutlet UIImageView *imageView;
+  IBOutlet UITextView *textView;
+  
   AVCaptureVideoPreviewLayer *previewLayer;
   AVCaptureVideoDataOutput *videoDataOutput;
   dispatch_queue_t videoDataOutputQueue;
   AVCaptureStillImageOutput *stillImageOutput;
   UIView *flashView;
-  UIImage *square;
-  BOOL isUsingFrontFacingCamera;
+
+                           
   AVSpeechSynthesizer *synth;
   NSMutableDictionary *oldPredictionValues;
   NSMutableArray *labelLayers;
@@ -38,10 +40,13 @@
   std::unique_ptr<tensorflow::Session> tf_session;
   std::unique_ptr<tensorflow::MemmappedEnv> tf_memmapped_env;
   std::vector<std::string> labels;
+                           
+//  IBOutlet UISegmentedControl *camerasControl;
 }
 @property(strong, nonatomic) CATextLayer *predictionTextLayer;
+@property (weak, nonatomic) IBOutlet UIButton *runStopBtn;
 
-- (IBAction)takePicture:(id)sender;
-- (IBAction)switchCameras:(id)sender;
-
+@property (nonatomic) UIImagePickerController *imagePickerController;
+@property (nonatomic) NSMutableArray *capturedImages;
+@property (nonatomic) IBOutlet UIView *overlayView;
 @end

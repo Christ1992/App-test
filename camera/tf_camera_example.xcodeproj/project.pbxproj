@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		1C3C9DCB1ED3AB4200B8B5FA /* ios_image_load.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1C3C9DC91ED3AB4200B8B5FA /* ios_image_load.mm */; };
 		1C3C9DCC1ED3AB4200B8B5FA /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1C3C9DCA1ED3AB4200B8B5FA /* main.mm */; };
-		1C968D171ED3B8F20054F5C3 /* grace_hopper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 59A3CFF51CF4E68100C4259F /* grace_hopper.jpg */; };
 		1C99111C1ED3B0E600A6BFB9 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C99111B1ED3B0E600A6BFB9 /* MainStoryboard_iPhone.storyboard */; };
 		1CA5EB931ED3ABFB00247A34 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CA5EB921ED3ABFB00247A34 /* CoreMedia.framework */; };
 		1CB47D491ED3AD1700DF7666 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CB47D481ED3AD1700DF7666 /* AVFoundation.framework */; };
@@ -18,8 +17,8 @@
 		1CDB2D4C1ED3A9CD007929E9 /* tensorflow_utils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1CDB2D481ED3A9CD007929E9 /* tensorflow_utils.mm */; };
 		1CDB2D4E1ED3AA35007929E9 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1CDB2D4D1ED3AA35007929E9 /* Info.plist */; };
 		54DC6C3C5F734F3A58069F0C /* libPods-tf_camera_example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BA8BF92C84895BFE59D8236 /* libPods-tf_camera_example.a */; };
-		AFFBE8511F4CF74B00F3BDAB /* imagenet_comp_graph_label_strings.txt in Resources */ = {isa = PBXBuildFile; fileRef = AFFBE84F1F4CF74B00F3BDAB /* imagenet_comp_graph_label_strings.txt */; };
-		AFFBE8521F4CF74B00F3BDAB /* tensorflow_inception_graph.pb in Resources */ = {isa = PBXBuildFile; fileRef = AFFBE8501F4CF74B00F3BDAB /* tensorflow_inception_graph.pb */; };
+		AF72302C1F4DA221009CF535 /* tensorflow_inception_graph.pb in Resources */ = {isa = PBXBuildFile; fileRef = AF72302B1F4DA221009CF535 /* tensorflow_inception_graph.pb */; };
+		AF72302E1F4DA22B009CF535 /* imagenet_comp_graph_label_strings.txt in Resources */ = {isa = PBXBuildFile; fileRef = AF72302D1F4DA22B009CF535 /* imagenet_comp_graph_label_strings.txt */; };
 		AFFBE8541F4CF84500F3BDAB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFFBE8531F4CF84500F3BDAB /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
@@ -44,9 +43,8 @@
 		3BA8BF92C84895BFE59D8236 /* libPods-tf_camera_example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-tf_camera_example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BC5BE4BBD09374D3E98F082 /* Pods-tf_camera_example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tf_camera_example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-tf_camera_example/Pods-tf_camera_example.debug.xcconfig"; sourceTree = "<group>"; };
 		55ED318E8D29C8AFEF03DF1E /* Pods-tf_camera_example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tf_camera_example.release.xcconfig"; path = "Pods/Target Support Files/Pods-tf_camera_example/Pods-tf_camera_example.release.xcconfig"; sourceTree = "<group>"; };
-		59A3CFF51CF4E68100C4259F /* grace_hopper.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = grace_hopper.jpg; sourceTree = "<group>"; };
-		AFFBE84F1F4CF74B00F3BDAB /* imagenet_comp_graph_label_strings.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = imagenet_comp_graph_label_strings.txt; path = ../../../inception5h/imagenet_comp_graph_label_strings.txt; sourceTree = "<group>"; };
-		AFFBE8501F4CF74B00F3BDAB /* tensorflow_inception_graph.pb */ = {isa = PBXFileReference; lastKnownFileType = file; name = tensorflow_inception_graph.pb; path = ../../../inception5h/tensorflow_inception_graph.pb; sourceTree = "<group>"; };
+		AF72302B1F4DA221009CF535 /* tensorflow_inception_graph.pb */ = {isa = PBXFileReference; lastKnownFileType = file; name = tensorflow_inception_graph.pb; path = ../../../../../../Downloads/inception5h/tensorflow_inception_graph.pb; sourceTree = "<group>"; };
+		AF72302D1F4DA22B009CF535 /* imagenet_comp_graph_label_strings.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = imagenet_comp_graph_label_strings.txt; path = ../../../../../../Downloads/inception5h/imagenet_comp_graph_label_strings.txt; sourceTree = "<group>"; };
 		AFFBE8531F4CF84500F3BDAB /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -101,7 +99,8 @@
 				1CDB2D451ED3A9CD007929E9 /* CameraExampleViewController.mm */,
 				1CDB2D471ED3A9CD007929E9 /* tensorflow_utils.h */,
 				1CDB2D481ED3A9CD007929E9 /* tensorflow_utils.mm */,
-				59A3CFF31CF4E68100C4259F /* data */,
+				AF72302B1F4DA221009CF535 /* tensorflow_inception_graph.pb */,
+				AF72302D1F4DA22B009CF535 /* imagenet_comp_graph_label_strings.txt */,
 				5911579C1CF4011C00C31E3A /* Products */,
 				3E9FC355632FB928EA23BEED /* Pods */,
 				24D7686C331131624F4454A0 /* Frameworks */,
@@ -114,16 +113,6 @@
 				1C564C0D1ED3A92E00087306 /* tf_camera_example.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		59A3CFF31CF4E68100C4259F /* data */ = {
-			isa = PBXGroup;
-			children = (
-				59A3CFF51CF4E68100C4259F /* grace_hopper.jpg */,
-				AFFBE84F1F4CF74B00F3BDAB /* imagenet_comp_graph_label_strings.txt */,
-				AFFBE8501F4CF74B00F3BDAB /* tensorflow_inception_graph.pb */,
-			);
-			path = data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,12 +178,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AFFBE8521F4CF74B00F3BDAB /* tensorflow_inception_graph.pb in Resources */,
-				1C968D171ED3B8F20054F5C3 /* grace_hopper.jpg in Resources */,
-				AFFBE8511F4CF74B00F3BDAB /* imagenet_comp_graph_label_strings.txt in Resources */,
 				1C99111C1ED3B0E600A6BFB9 /* MainStoryboard_iPhone.storyboard in Resources */,
+				AF72302C1F4DA221009CF535 /* tensorflow_inception_graph.pb in Resources */,
 				1CDB2D4E1ED3AA35007929E9 /* Info.plist in Resources */,
 				AFFBE8541F4CF84500F3BDAB /* Default-568h@2x.png in Resources */,
+				AF72302E1F4DA22B009CF535 /* imagenet_comp_graph_label_strings.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
