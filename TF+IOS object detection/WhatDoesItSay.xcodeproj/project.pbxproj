@@ -1,0 +1,492 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1C3C9DCB1ED3AB4200B8B5FA /* ios_image_load.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1C3C9DC91ED3AB4200B8B5FA /* ios_image_load.mm */; };
+		1C3C9DCC1ED3AB4200B8B5FA /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1C3C9DCA1ED3AB4200B8B5FA /* main.mm */; };
+		1C99111C1ED3B0E600A6BFB9 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C99111B1ED3B0E600A6BFB9 /* MainStoryboard_iPhone.storyboard */; };
+		1CA5EB931ED3ABFB00247A34 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CA5EB921ED3ABFB00247A34 /* CoreMedia.framework */; };
+		1CB47D491ED3AD1700DF7666 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CB47D481ED3AD1700DF7666 /* AVFoundation.framework */; };
+		1CDB2D491ED3A9CD007929E9 /* CameraExampleAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CDB2D431ED3A9CD007929E9 /* CameraExampleAppDelegate.m */; };
+		1CDB2D4A1ED3A9CD007929E9 /* CameraExampleViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1CDB2D451ED3A9CD007929E9 /* CameraExampleViewController.mm */; };
+		1CDB2D4C1ED3A9CD007929E9 /* tensorflow_utils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1CDB2D481ED3A9CD007929E9 /* tensorflow_utils.mm */; };
+		AF18C6971F54D000003D222D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF18C6961F54CFFF003D222D /* AudioToolbox.framework */; };
+		AF18C6DD1F54DFF1003D222D /* Aeroplane.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF18C6C61F54DFED003D222D /* Aeroplane.wav */; };
+		AF18C6DE1F54DFF1003D222D /* Bee.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF18C6C71F54DFED003D222D /* Bee.wav */; };
+		AF18C6DF1F54DFF1003D222D /* Bird.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF18C6C81F54DFEE003D222D /* Bird.wav */; };
+		AF18C6E01F54DFF1003D222D /* Cat.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF18C6C91F54DFEE003D222D /* Cat.wav */; };
+		AF18C6E11F54DFF1003D222D /* Chicken.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF18C6CA1F54DFEE003D222D /* Chicken.wav */; };
+		AF18C6E21F54DFF1003D222D /* Cow.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF18C6CB1F54DFEE003D222D /* Cow.wav */; };
+		AF18C6E31F54DFF1003D222D /* Crow.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF18C6CC1F54DFEE003D222D /* Crow.wav */; };
+		AF18C6E41F54DFF1003D222D /* Dog.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF18C6CD1F54DFEE003D222D /* Dog.wav */; };
+		AF18C6E51F54DFF1003D222D /* Dolphin.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF18C6CE1F54DFEE003D222D /* Dolphin.wav */; };
+		AF18C6E61F54DFF1003D222D /* Duck.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF18C6CF1F54DFEF003D222D /* Duck.wav */; };
+		AF18C6E71F54DFF1003D222D /* Elephant.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF18C6D01F54DFEF003D222D /* Elephant.wav */; };
+		AF18C6E81F54DFF1003D222D /* Fox.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF18C6D11F54DFEF003D222D /* Fox.wav */; };
+		AF18C6E91F54DFF1003D222D /* Frog.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF18C6D21F54DFEF003D222D /* Frog.wav */; };
+		AF18C6EA1F54DFF1003D222D /* Horse.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF18C6D31F54DFEF003D222D /* Horse.wav */; };
+		AF18C6EB1F54DFF1003D222D /* Lion.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF18C6D41F54DFEF003D222D /* Lion.wav */; };
+		AF18C6EC1F54DFF1003D222D /* Mickey.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF18C6D51F54DFF0003D222D /* Mickey.wav */; };
+		AF18C6ED1F54DFF1003D222D /* Monkey.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF18C6D61F54DFF0003D222D /* Monkey.wav */; };
+		AF18C6EE1F54DFF1003D222D /* Mouse.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF18C6D71F54DFF0003D222D /* Mouse.wav */; };
+		AF18C6EF1F54DFF1003D222D /* Rabbit.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF18C6D81F54DFF0003D222D /* Rabbit.wav */; };
+		AF18C6F01F54DFF1003D222D /* Sheep.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF18C6D91F54DFF0003D222D /* Sheep.wav */; };
+		AF18C6F11F54DFF1003D222D /* Squirrel.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF18C6DA1F54DFF0003D222D /* Squirrel.wav */; };
+		AF18C6F21F54DFF1003D222D /* Waterfall.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF18C6DB1F54DFF1003D222D /* Waterfall.wav */; };
+		AF18C6F31F54DFF1003D222D /* Whale.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF18C6DC1F54DFF1003D222D /* Whale.wav */; };
+		AF57D2A11F4F031F0063DC5D /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF57D2A01F4F031F0063DC5D /* Accelerate.framework */; };
+		AF7230351F4E35F0009CF535 /* eight_calculaiton_graph.pb in Resources */ = {isa = PBXBuildFile; fileRef = AF7230331F4E35F0009CF535 /* eight_calculaiton_graph.pb */; };
+		AF7230361F4E35F0009CF535 /* kid_new_label_map.txt in Resources */ = {isa = PBXBuildFile; fileRef = AF7230341F4E35F0009CF535 /* kid_new_label_map.txt */; };
+		AFEE5B221F4F76F1000EA783 /* libtensorflow-core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AFEE5B211F4F76F1000EA783 /* libtensorflow-core.a */; };
+		AFEE5B251F4F77A2000EA783 /* libprotobuf-lite.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AFEE5B231F4F77A2000EA783 /* libprotobuf-lite.a */; };
+		AFEE5B261F4F77A2000EA783 /* libprotobuf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AFEE5B241F4F77A2000EA783 /* libprotobuf.a */; };
+		AFFBE8541F4CF84500F3BDAB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFFBE8531F4CF84500F3BDAB /* Default-568h@2x.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1C0D73481ECCC41B008C1DAB /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		1C0D734A1ECCC460008C1DAB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		1C3C9DC81ED3AB4200B8B5FA /* ios_image_load.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ios_image_load.h; sourceTree = "<group>"; };
+		1C3C9DC91ED3AB4200B8B5FA /* ios_image_load.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ios_image_load.mm; sourceTree = "<group>"; };
+		1C3C9DCA1ED3AB4200B8B5FA /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
+		1C564C0D1ED3A92E00087306 /* WhatDoesItSay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatDoesItSay.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C99111B1ED3B0E600A6BFB9 /* MainStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		1CA45FFE1ECCC356002FA6A4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		1CA5EB921ED3ABFB00247A34 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		1CB47D481ED3AD1700DF7666 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		1CDB2D421ED3A9CD007929E9 /* CameraExampleAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraExampleAppDelegate.h; sourceTree = "<group>"; };
+		1CDB2D431ED3A9CD007929E9 /* CameraExampleAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraExampleAppDelegate.m; sourceTree = "<group>"; };
+		1CDB2D441ED3A9CD007929E9 /* CameraExampleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraExampleViewController.h; sourceTree = "<group>"; };
+		1CDB2D451ED3A9CD007929E9 /* CameraExampleViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CameraExampleViewController.mm; sourceTree = "<group>"; };
+		1CDB2D471ED3A9CD007929E9 /* tensorflow_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tensorflow_utils.h; sourceTree = "<group>"; };
+		1CDB2D481ED3A9CD007929E9 /* tensorflow_utils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = tensorflow_utils.mm; sourceTree = "<group>"; };
+		1CDB2D4D1ED3AA35007929E9 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AF18C6961F54CFFF003D222D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		AF18C6C61F54DFED003D222D /* Aeroplane.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Aeroplane.wav; path = newwav/Aeroplane.wav; sourceTree = "<group>"; };
+		AF18C6C71F54DFED003D222D /* Bee.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Bee.wav; path = newwav/Bee.wav; sourceTree = "<group>"; };
+		AF18C6C81F54DFEE003D222D /* Bird.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Bird.wav; path = newwav/Bird.wav; sourceTree = "<group>"; };
+		AF18C6C91F54DFEE003D222D /* Cat.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Cat.wav; path = newwav/Cat.wav; sourceTree = "<group>"; };
+		AF18C6CA1F54DFEE003D222D /* Chicken.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Chicken.wav; path = newwav/Chicken.wav; sourceTree = "<group>"; };
+		AF18C6CB1F54DFEE003D222D /* Cow.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Cow.wav; path = newwav/Cow.wav; sourceTree = "<group>"; };
+		AF18C6CC1F54DFEE003D222D /* Crow.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Crow.wav; path = newwav/Crow.wav; sourceTree = "<group>"; };
+		AF18C6CD1F54DFEE003D222D /* Dog.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Dog.wav; path = newwav/Dog.wav; sourceTree = "<group>"; };
+		AF18C6CE1F54DFEE003D222D /* Dolphin.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Dolphin.wav; path = newwav/Dolphin.wav; sourceTree = "<group>"; };
+		AF18C6CF1F54DFEF003D222D /* Duck.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Duck.wav; path = newwav/Duck.wav; sourceTree = "<group>"; };
+		AF18C6D01F54DFEF003D222D /* Elephant.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Elephant.wav; path = newwav/Elephant.wav; sourceTree = "<group>"; };
+		AF18C6D11F54DFEF003D222D /* Fox.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Fox.wav; path = newwav/Fox.wav; sourceTree = "<group>"; };
+		AF18C6D21F54DFEF003D222D /* Frog.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Frog.wav; path = newwav/Frog.wav; sourceTree = "<group>"; };
+		AF18C6D31F54DFEF003D222D /* Horse.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Horse.wav; path = newwav/Horse.wav; sourceTree = "<group>"; };
+		AF18C6D41F54DFEF003D222D /* Lion.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Lion.wav; path = newwav/Lion.wav; sourceTree = "<group>"; };
+		AF18C6D51F54DFF0003D222D /* Mickey.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Mickey.wav; path = newwav/Mickey.wav; sourceTree = "<group>"; };
+		AF18C6D61F54DFF0003D222D /* Monkey.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Monkey.wav; path = newwav/Monkey.wav; sourceTree = "<group>"; };
+		AF18C6D71F54DFF0003D222D /* Mouse.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Mouse.wav; path = newwav/Mouse.wav; sourceTree = "<group>"; };
+		AF18C6D81F54DFF0003D222D /* Rabbit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Rabbit.wav; path = newwav/Rabbit.wav; sourceTree = "<group>"; };
+		AF18C6D91F54DFF0003D222D /* Sheep.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Sheep.wav; path = newwav/Sheep.wav; sourceTree = "<group>"; };
+		AF18C6DA1F54DFF0003D222D /* Squirrel.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Squirrel.wav; path = newwav/Squirrel.wav; sourceTree = "<group>"; };
+		AF18C6DB1F54DFF1003D222D /* Waterfall.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Waterfall.wav; path = newwav/Waterfall.wav; sourceTree = "<group>"; };
+		AF18C6DC1F54DFF1003D222D /* Whale.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Whale.wav; path = newwav/Whale.wav; sourceTree = "<group>"; };
+		AF57D2A01F4F031F0063DC5D /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		AF7230331F4E35F0009CF535 /* eight_calculaiton_graph.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = eight_calculaiton_graph.pb; sourceTree = "<group>"; };
+		AF7230341F4E35F0009CF535 /* kid_new_label_map.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = kid_new_label_map.txt; sourceTree = "<group>"; };
+		AFEE5B1F1F4F7227000EA783 /* tensorflow_experimental.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = tensorflow_experimental.framework; path = "../../../../../../TF-OD-Test/data/毕设/tensorflow_experimental.framework"; sourceTree = "<group>"; };
+		AFEE5B211F4F76F1000EA783 /* libtensorflow-core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libtensorflow-core.a"; path = "../../../../contrib/makefile/gen/lib/libtensorflow-core.a"; sourceTree = "<group>"; };
+		AFEE5B231F4F77A2000EA783 /* libprotobuf-lite.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libprotobuf-lite.a"; path = "../../../../contrib/makefile/gen/protobuf_ios/lib/libprotobuf-lite.a"; sourceTree = "<group>"; };
+		AFEE5B241F4F77A2000EA783 /* libprotobuf.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libprotobuf.a; path = ../../../../contrib/makefile/gen/protobuf_ios/lib/libprotobuf.a; sourceTree = "<group>"; };
+		AFFBE8531F4CF84500F3BDAB /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1C564C0A1ED3A92E00087306 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AF18C6971F54D000003D222D /* AudioToolbox.framework in Frameworks */,
+				AFEE5B251F4F77A2000EA783 /* libprotobuf-lite.a in Frameworks */,
+				AFEE5B261F4F77A2000EA783 /* libprotobuf.a in Frameworks */,
+				AFEE5B221F4F76F1000EA783 /* libtensorflow-core.a in Frameworks */,
+				AF57D2A11F4F031F0063DC5D /* Accelerate.framework in Frameworks */,
+				1CB47D491ED3AD1700DF7666 /* AVFoundation.framework in Frameworks */,
+				1CA5EB931ED3ABFB00247A34 /* CoreMedia.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		24D7686C331131624F4454A0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AF18C6961F54CFFF003D222D /* AudioToolbox.framework */,
+				AFEE5B231F4F77A2000EA783 /* libprotobuf-lite.a */,
+				AFEE5B241F4F77A2000EA783 /* libprotobuf.a */,
+				AFEE5B211F4F76F1000EA783 /* libtensorflow-core.a */,
+				AFEE5B1F1F4F7227000EA783 /* tensorflow_experimental.framework */,
+				AF57D2A01F4F031F0063DC5D /* Accelerate.framework */,
+				1CB47D481ED3AD1700DF7666 /* AVFoundation.framework */,
+				1CA5EB921ED3ABFB00247A34 /* CoreMedia.framework */,
+				1C0D734A1ECCC460008C1DAB /* CoreGraphics.framework */,
+				1C0D73481ECCC41B008C1DAB /* CoreImage.framework */,
+				1CA45FFE1ECCC356002FA6A4 /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		591157921CF4011C00C31E3A = {
+			isa = PBXGroup;
+			children = (
+				AF18C6C61F54DFED003D222D /* Aeroplane.wav */,
+				AF18C6C71F54DFED003D222D /* Bee.wav */,
+				AF18C6C81F54DFEE003D222D /* Bird.wav */,
+				AF18C6C91F54DFEE003D222D /* Cat.wav */,
+				AF18C6CA1F54DFEE003D222D /* Chicken.wav */,
+				AF18C6CB1F54DFEE003D222D /* Cow.wav */,
+				AF18C6CC1F54DFEE003D222D /* Crow.wav */,
+				AF18C6CD1F54DFEE003D222D /* Dog.wav */,
+				AF18C6CE1F54DFEE003D222D /* Dolphin.wav */,
+				AF18C6CF1F54DFEF003D222D /* Duck.wav */,
+				AF18C6D01F54DFEF003D222D /* Elephant.wav */,
+				AF18C6D11F54DFEF003D222D /* Fox.wav */,
+				AF18C6D21F54DFEF003D222D /* Frog.wav */,
+				AF18C6D31F54DFEF003D222D /* Horse.wav */,
+				AF18C6D41F54DFEF003D222D /* Lion.wav */,
+				AF18C6D51F54DFF0003D222D /* Mickey.wav */,
+				AF18C6D61F54DFF0003D222D /* Monkey.wav */,
+				AF18C6D71F54DFF0003D222D /* Mouse.wav */,
+				AF18C6D81F54DFF0003D222D /* Rabbit.wav */,
+				AF18C6D91F54DFF0003D222D /* Sheep.wav */,
+				AF18C6DA1F54DFF0003D222D /* Squirrel.wav */,
+				AF18C6DB1F54DFF1003D222D /* Waterfall.wav */,
+				AF18C6DC1F54DFF1003D222D /* Whale.wav */,
+				AFFBE8531F4CF84500F3BDAB /* Default-568h@2x.png */,
+				1C99111B1ED3B0E600A6BFB9 /* MainStoryboard_iPhone.storyboard */,
+				1C3C9DC81ED3AB4200B8B5FA /* ios_image_load.h */,
+				1C3C9DC91ED3AB4200B8B5FA /* ios_image_load.mm */,
+				1C3C9DCA1ED3AB4200B8B5FA /* main.mm */,
+				1CDB2D4D1ED3AA35007929E9 /* Info.plist */,
+				1CDB2D421ED3A9CD007929E9 /* CameraExampleAppDelegate.h */,
+				1CDB2D431ED3A9CD007929E9 /* CameraExampleAppDelegate.m */,
+				1CDB2D441ED3A9CD007929E9 /* CameraExampleViewController.h */,
+				1CDB2D451ED3A9CD007929E9 /* CameraExampleViewController.mm */,
+				1CDB2D471ED3A9CD007929E9 /* tensorflow_utils.h */,
+				1CDB2D481ED3A9CD007929E9 /* tensorflow_utils.mm */,
+				AF7230331F4E35F0009CF535 /* eight_calculaiton_graph.pb */,
+				AF7230341F4E35F0009CF535 /* kid_new_label_map.txt */,
+				5911579C1CF4011C00C31E3A /* Products */,
+				24D7686C331131624F4454A0 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		5911579C1CF4011C00C31E3A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1C564C0D1ED3A92E00087306 /* WhatDoesItSay.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1C564C0C1ED3A92E00087306 /* WhatDoesItSay */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1C564C351ED3A92E00087306 /* Build configuration list for PBXNativeTarget "WhatDoesItSay" */;
+			buildPhases = (
+				1C564C091ED3A92E00087306 /* Sources */,
+				1C564C0A1ED3A92E00087306 /* Frameworks */,
+				1C564C0B1ED3A92E00087306 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WhatDoesItSay;
+			productName = tf_camera_example;
+			productReference = 1C564C0D1ED3A92E00087306 /* WhatDoesItSay.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		591157931CF4011C00C31E3A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = Google;
+				TargetAttributes = {
+					1C564C0C1ED3A92E00087306 = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = XBP8Y7FXNL;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 591157961CF4011C00C31E3A /* Build configuration list for PBXProject "WhatDoesItSay" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 591157921CF4011C00C31E3A;
+			productRefGroup = 5911579C1CF4011C00C31E3A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1C564C0C1ED3A92E00087306 /* WhatDoesItSay */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1C564C0B1ED3A92E00087306 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AF18C6E81F54DFF1003D222D /* Fox.wav in Resources */,
+				AF18C6E21F54DFF1003D222D /* Cow.wav in Resources */,
+				AF18C6F01F54DFF1003D222D /* Sheep.wav in Resources */,
+				AF18C6E31F54DFF1003D222D /* Crow.wav in Resources */,
+				AF18C6E91F54DFF1003D222D /* Frog.wav in Resources */,
+				AF18C6EC1F54DFF1003D222D /* Mickey.wav in Resources */,
+				AF18C6E11F54DFF1003D222D /* Chicken.wav in Resources */,
+				AF18C6E51F54DFF1003D222D /* Dolphin.wav in Resources */,
+				1C99111C1ED3B0E600A6BFB9 /* MainStoryboard_iPhone.storyboard in Resources */,
+				AF18C6EE1F54DFF1003D222D /* Mouse.wav in Resources */,
+				AF7230361F4E35F0009CF535 /* kid_new_label_map.txt in Resources */,
+				AF18C6EF1F54DFF1003D222D /* Rabbit.wav in Resources */,
+				AF18C6EB1F54DFF1003D222D /* Lion.wav in Resources */,
+				AF18C6EA1F54DFF1003D222D /* Horse.wav in Resources */,
+				AF18C6DD1F54DFF1003D222D /* Aeroplane.wav in Resources */,
+				AF18C6E61F54DFF1003D222D /* Duck.wav in Resources */,
+				AF18C6ED1F54DFF1003D222D /* Monkey.wav in Resources */,
+				AF18C6E01F54DFF1003D222D /* Cat.wav in Resources */,
+				AF18C6F31F54DFF1003D222D /* Whale.wav in Resources */,
+				AF18C6E71F54DFF1003D222D /* Elephant.wav in Resources */,
+				AF18C6F21F54DFF1003D222D /* Waterfall.wav in Resources */,
+				AF18C6DE1F54DFF1003D222D /* Bee.wav in Resources */,
+				AF18C6DF1F54DFF1003D222D /* Bird.wav in Resources */,
+				AF18C6E41F54DFF1003D222D /* Dog.wav in Resources */,
+				AF7230351F4E35F0009CF535 /* eight_calculaiton_graph.pb in Resources */,
+				AFFBE8541F4CF84500F3BDAB /* Default-568h@2x.png in Resources */,
+				AF18C6F11F54DFF1003D222D /* Squirrel.wav in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1C564C091ED3A92E00087306 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1CDB2D4C1ED3A9CD007929E9 /* tensorflow_utils.mm in Sources */,
+				1C3C9DCB1ED3AB4200B8B5FA /* ios_image_load.mm in Sources */,
+				1CDB2D4A1ED3A9CD007929E9 /* CameraExampleViewController.mm in Sources */,
+				1CDB2D491ED3A9CD007929E9 /* CameraExampleAppDelegate.m in Sources */,
+				1C3C9DCC1ED3AB4200B8B5FA /* main.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1C564C361ED3A92E00087306 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
+				DEVELOPMENT_TEAM = XBP8Y7FXNL;
+				ENABLE_BITCODE = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
+				HEADER_SEARCH_PATHS = (
+					"/Users/yingjie/tensorflow-master",
+					"/Users/yingjie/tensorflow-master/tensorflow/contrib/makefile/downloads/protobuf/src",
+					"/Users/yingjie/tensorflow-master/tensorflow/contrib/makefile/downloads",
+					"/Users/yingjie/tensorflow-master/tensorflow/contrib/makefile/downloads/eigen",
+					"/Users/yingjie/tensorflow-master/tensorflow/contrib/makefile/gen/proto",
+				);
+				INFOPLIST_FILE = Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"/Users/yingjie/tensorflow-master",
+					"/Users/yingjie/tensorflow-master/tensorflow/contrib/makefile/gen/lib",
+					"/Users/yingjie/tensorflow-master/tensorflow/contrib/makefile/gen/protobuf_ios/lib",
+				);
+				OTHER_LDFLAGS = (
+					"-force_load",
+					"/Users/yingjie/tensorflow-master/tensorflow/contrib/makefile/gen/lib/libtensorflow-core.a",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = yingjie2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		1C564C371ED3A92E00087306 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
+				DEVELOPMENT_TEAM = XBP8Y7FXNL;
+				ENABLE_BITCODE = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
+				HEADER_SEARCH_PATHS = (
+					"/Users/yingjie/tensorflow-master",
+					"/Users/yingjie/tensorflow-master/tensorflow/contrib/makefile/downloads/protobuf/src",
+					"/Users/yingjie/tensorflow-master/tensorflow/contrib/makefile/downloads",
+					"/Users/yingjie/tensorflow-master/tensorflow/contrib/makefile/downloads/eigen",
+					"/Users/yingjie/tensorflow-master/tensorflow/contrib/makefile/gen/proto",
+				);
+				INFOPLIST_FILE = Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"/Users/yingjie/tensorflow-master",
+					"/Users/yingjie/tensorflow-master/tensorflow/contrib/makefile/gen/lib",
+					"/Users/yingjie/tensorflow-master/tensorflow/contrib/makefile/gen/protobuf_ios/lib",
+				);
+				OTHER_LDFLAGS = (
+					"-force_load",
+					"/Users/yingjie/tensorflow-master/tensorflow/contrib/makefile/gen/lib/libtensorflow-core.a",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = yingjie2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		591157B01CF4011D00C31E3A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos10.3;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		591157B11CF4011D00C31E3A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos10.3;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1C564C351ED3A92E00087306 /* Build configuration list for PBXNativeTarget "WhatDoesItSay" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1C564C361ED3A92E00087306 /* Debug */,
+				1C564C371ED3A92E00087306 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		591157961CF4011C00C31E3A /* Build configuration list for PBXProject "WhatDoesItSay" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				591157B01CF4011D00C31E3A /* Debug */,
+				591157B11CF4011D00C31E3A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 591157931CF4011C00C31E3A /* Project object */;
+}
