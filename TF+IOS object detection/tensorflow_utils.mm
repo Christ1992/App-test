@@ -136,7 +136,7 @@ tensorflow::Status LoadLabels(NSString* file_name, NSString* file_type,
   return tensorflow::Status::OK();
 }
 
-static NSString* model_file_name = @"eight_calculaiton_graph";//@"multibox_model"; frozen
+static NSString* model_file_name = @"strip_unused_nodes_graph";//@"multibox_model"; frozen
 static NSString* model_file_type = @"pb";
 Status ReadTensorFromImageFile(const string& file_name, const int input_height, const int input_width,
                                int *width, int *height, int *channels,

@@ -15,6 +15,7 @@
 		1CDB2D491ED3A9CD007929E9 /* CameraExampleAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CDB2D431ED3A9CD007929E9 /* CameraExampleAppDelegate.m */; };
 		1CDB2D4A1ED3A9CD007929E9 /* CameraExampleViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1CDB2D451ED3A9CD007929E9 /* CameraExampleViewController.mm */; };
 		1CDB2D4C1ED3A9CD007929E9 /* tensorflow_utils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1CDB2D481ED3A9CD007929E9 /* tensorflow_utils.mm */; };
+		AF0BE9931F5F435200D95C5D /* strip_unused_nodes_graph.pb in Resources */ = {isa = PBXBuildFile; fileRef = AF0BE9921F5F435200D95C5D /* strip_unused_nodes_graph.pb */; };
 		AF18C6971F54D000003D222D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF18C6961F54CFFF003D222D /* AudioToolbox.framework */; };
 		AF18C6DD1F54DFF1003D222D /* Aeroplane.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF18C6C61F54DFED003D222D /* Aeroplane.wav */; };
 		AF18C6DE1F54DFF1003D222D /* Bee.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF18C6C71F54DFED003D222D /* Bee.wav */; };
@@ -66,6 +67,7 @@
 		1CDB2D471ED3A9CD007929E9 /* tensorflow_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tensorflow_utils.h; sourceTree = "<group>"; };
 		1CDB2D481ED3A9CD007929E9 /* tensorflow_utils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = tensorflow_utils.mm; sourceTree = "<group>"; };
 		1CDB2D4D1ED3AA35007929E9 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AF0BE9921F5F435200D95C5D /* strip_unused_nodes_graph.pb */ = {isa = PBXFileReference; lastKnownFileType = file; name = strip_unused_nodes_graph.pb; path = "../../../../../../TF-OD-Test/data/毕设/最终模型/strip_unused_nodes_graph.pb"; sourceTree = "<group>"; };
 		AF18C6961F54CFFF003D222D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		AF18C6C61F54DFED003D222D /* Aeroplane.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Aeroplane.wav; path = newwav/Aeroplane.wav; sourceTree = "<group>"; };
 		AF18C6C71F54DFED003D222D /* Bee.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Bee.wav; path = newwav/Bee.wav; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				1CDB2D441ED3A9CD007929E9 /* CameraExampleViewController.h */,
 				1CDB2D451ED3A9CD007929E9 /* CameraExampleViewController.mm */,
 				1CDB2D471ED3A9CD007929E9 /* tensorflow_utils.h */,
+				AF0BE9921F5F435200D95C5D /* strip_unused_nodes_graph.pb */,
 				1CDB2D481ED3A9CD007929E9 /* tensorflow_utils.mm */,
 				AF7230331F4E35F0009CF535 /* eight_calculaiton_graph.pb */,
 				AF7230341F4E35F0009CF535 /* kid_new_label_map.txt */,
@@ -254,6 +257,7 @@
 				AF18C6F01F54DFF1003D222D /* Sheep.wav in Resources */,
 				AF18C6E31F54DFF1003D222D /* Crow.wav in Resources */,
 				AF18C6E91F54DFF1003D222D /* Frog.wav in Resources */,
+				AF0BE9931F5F435200D95C5D /* strip_unused_nodes_graph.pb in Resources */,
 				AF18C6EC1F54DFF1003D222D /* Mickey.wav in Resources */,
 				AF18C6E11F54DFF1003D222D /* Chicken.wav in Resources */,
 				AF18C6E51F54DFF1003D222D /* Dolphin.wav in Resources */,
