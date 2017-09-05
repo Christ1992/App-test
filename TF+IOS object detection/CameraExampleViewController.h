@@ -28,6 +28,7 @@
   IBOutlet UITextView *textView;
   __weak IBOutlet UIView *drawView;
   AVCaptureVideoPreviewLayer *previewLayer;
+   __weak IBOutlet UIImageView *boundView;
   AVCaptureVideoDataOutput *videoDataOutput;
   dispatch_queue_t videoDataOutputQueue;
   AVCaptureStillImageOutput *stillImageOutput;

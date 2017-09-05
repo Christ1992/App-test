@@ -233,7 +233,7 @@ CFBundleRef mainBundle = CFBundleGetMainBundle();
                 //
                 if ((labelCount == 0) && (boxScore.at(i) > 0.5f)) {
                     
-                    wordsToSay=[NSString stringWithFormat:@"There is a %@. Guess where she is?", labelName];
+                    wordsToSay=[NSString stringWithFormat:@"There is a %@. Guess where it is?", labelName];
                     predictedX=originX;
                     predictedY=originY;
                     predictedW=labelWidth;
@@ -303,6 +303,10 @@ CFBundleRef mainBundle = CFBundleGetMainBundle();
     imageView.hidden=NO;
     self.runButton.hidden=NO;
     [correctArea removeFromSuperview];
+//    int w=boundView.frame.size.width;
+//    int h=boundView.frame.size.height;
+    
+    
     [self.view addSubview:imageView];
     [self.view sendSubviewToBack:imageView];
     
@@ -406,7 +410,7 @@ CFBundleRef mainBundle = CFBundleGetMainBundle();
     [imageView removeFromSuperview];
     [self removeAllLabelLayers];
     [correctArea removeFromSuperview];
-    
+    imageView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0,boundView.frame.size.width,boundView.frame.size.height)];
     //    run the previewView
     freezeBtn=false;
     [session startRunning];
@@ -658,7 +662,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
       predictedW=-1;
       predictedH=-1;
       predictedID=-1;
-      wordsToSay=nil;
+//      wordsToSay=nil;
     if (!run_status.ok()) {
       LOG(ERROR) << "Running model failed:" << run_status;
     } else {
@@ -752,13 +756,16 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 //
             if ((labelCount == 0) && (boxScore.at(i) > 0.5f)) {
             
-                wordsToSay=[NSString stringWithFormat:@"There is a %@. Guess where she is?", labelName];
+                wordsToSay=[NSString stringWithFormat:@"There is a %@. Guess where it is?", labelName];
                 predictedX=originX;
                 predictedY=originY;
                 predictedW=labelWidth;
                 predictedH=labelHeight;
 //                predictedID=i;
                 }
+            else if ((labelCount == 0) && (boxScore.at(i) <= 0.5f)){
+                wordsToSay=nil;
+            }
             labelCount+=1;
           }
         
