@@ -15,7 +15,7 @@
 		1CDB2D491ED3A9CD007929E9 /* CameraExampleAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CDB2D431ED3A9CD007929E9 /* CameraExampleAppDelegate.m */; };
 		1CDB2D4A1ED3A9CD007929E9 /* CameraExampleViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1CDB2D451ED3A9CD007929E9 /* CameraExampleViewController.mm */; };
 		1CDB2D4C1ED3A9CD007929E9 /* tensorflow_utils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1CDB2D481ED3A9CD007929E9 /* tensorflow_utils.mm */; };
-		AF0BE9931F5F435200D95C5D /* strip_unused_nodes_graph.pb in Resources */ = {isa = PBXBuildFile; fileRef = AF0BE9921F5F435200D95C5D /* strip_unused_nodes_graph.pb */; };
+		AF0BE9951F5F46ED00D95C5D /* strip_unused_nodes_graph.pb in Resources */ = {isa = PBXBuildFile; fileRef = AF0BE9941F5F46ED00D95C5D /* strip_unused_nodes_graph.pb */; };
 		AF18C6971F54D000003D222D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF18C6961F54CFFF003D222D /* AudioToolbox.framework */; };
 		AF18C6DD1F54DFF1003D222D /* Aeroplane.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF18C6C61F54DFED003D222D /* Aeroplane.wav */; };
 		AF18C6DE1F54DFF1003D222D /* Bee.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF18C6C71F54DFED003D222D /* Bee.wav */; };
@@ -40,8 +40,8 @@
 		AF18C6F11F54DFF1003D222D /* Squirrel.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF18C6DA1F54DFF0003D222D /* Squirrel.wav */; };
 		AF18C6F21F54DFF1003D222D /* Waterfall.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF18C6DB1F54DFF1003D222D /* Waterfall.wav */; };
 		AF18C6F31F54DFF1003D222D /* Whale.wav in Resources */ = {isa = PBXBuildFile; fileRef = AF18C6DC1F54DFF1003D222D /* Whale.wav */; };
+		AF3E18F01F61B96A00A7BBE4 /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AF3E18EF1F61B96A00A7BBE4 /* background.jpg */; };
 		AF57D2A11F4F031F0063DC5D /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AF57D2A01F4F031F0063DC5D /* Accelerate.framework */; };
-		AF7230351F4E35F0009CF535 /* eight_calculaiton_graph.pb in Resources */ = {isa = PBXBuildFile; fileRef = AF7230331F4E35F0009CF535 /* eight_calculaiton_graph.pb */; };
 		AF7230361F4E35F0009CF535 /* kid_new_label_map.txt in Resources */ = {isa = PBXBuildFile; fileRef = AF7230341F4E35F0009CF535 /* kid_new_label_map.txt */; };
 		AFEE5B221F4F76F1000EA783 /* libtensorflow-core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AFEE5B211F4F76F1000EA783 /* libtensorflow-core.a */; };
 		AFEE5B251F4F77A2000EA783 /* libprotobuf-lite.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AFEE5B231F4F77A2000EA783 /* libprotobuf-lite.a */; };
@@ -67,7 +67,7 @@
 		1CDB2D471ED3A9CD007929E9 /* tensorflow_utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tensorflow_utils.h; sourceTree = "<group>"; };
 		1CDB2D481ED3A9CD007929E9 /* tensorflow_utils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = tensorflow_utils.mm; sourceTree = "<group>"; };
 		1CDB2D4D1ED3AA35007929E9 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AF0BE9921F5F435200D95C5D /* strip_unused_nodes_graph.pb */ = {isa = PBXFileReference; lastKnownFileType = file; name = strip_unused_nodes_graph.pb; path = "../../../../../../TF-OD-Test/data/毕设/最终模型/strip_unused_nodes_graph.pb"; sourceTree = "<group>"; };
+		AF0BE9941F5F46ED00D95C5D /* strip_unused_nodes_graph.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = strip_unused_nodes_graph.pb; sourceTree = "<group>"; };
 		AF18C6961F54CFFF003D222D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		AF18C6C61F54DFED003D222D /* Aeroplane.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Aeroplane.wav; path = newwav/Aeroplane.wav; sourceTree = "<group>"; };
 		AF18C6C71F54DFED003D222D /* Bee.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Bee.wav; path = newwav/Bee.wav; sourceTree = "<group>"; };
@@ -92,8 +92,8 @@
 		AF18C6DA1F54DFF0003D222D /* Squirrel.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Squirrel.wav; path = newwav/Squirrel.wav; sourceTree = "<group>"; };
 		AF18C6DB1F54DFF1003D222D /* Waterfall.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Waterfall.wav; path = newwav/Waterfall.wav; sourceTree = "<group>"; };
 		AF18C6DC1F54DFF1003D222D /* Whale.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = Whale.wav; path = newwav/Whale.wav; sourceTree = "<group>"; };
+		AF3E18EF1F61B96A00A7BBE4 /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpg; sourceTree = "<group>"; };
 		AF57D2A01F4F031F0063DC5D /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
-		AF7230331F4E35F0009CF535 /* eight_calculaiton_graph.pb */ = {isa = PBXFileReference; lastKnownFileType = file; path = eight_calculaiton_graph.pb; sourceTree = "<group>"; };
 		AF7230341F4E35F0009CF535 /* kid_new_label_map.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = kid_new_label_map.txt; sourceTree = "<group>"; };
 		AFEE5B1F1F4F7227000EA783 /* tensorflow_experimental.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = tensorflow_experimental.framework; path = "../../../../../../TF-OD-Test/data/毕设/tensorflow_experimental.framework"; sourceTree = "<group>"; };
 		AFEE5B211F4F76F1000EA783 /* libtensorflow-core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libtensorflow-core.a"; path = "../../../../contrib/makefile/gen/lib/libtensorflow-core.a"; sourceTree = "<group>"; };
@@ -153,6 +153,7 @@
 				AF18C6CF1F54DFEF003D222D /* Duck.wav */,
 				AF18C6D01F54DFEF003D222D /* Elephant.wav */,
 				AF18C6D11F54DFEF003D222D /* Fox.wav */,
+				AF3E18EF1F61B96A00A7BBE4 /* background.jpg */,
 				AF18C6D21F54DFEF003D222D /* Frog.wav */,
 				AF18C6D31F54DFEF003D222D /* Horse.wav */,
 				AF18C6D41F54DFEF003D222D /* Lion.wav */,
@@ -175,9 +176,8 @@
 				1CDB2D441ED3A9CD007929E9 /* CameraExampleViewController.h */,
 				1CDB2D451ED3A9CD007929E9 /* CameraExampleViewController.mm */,
 				1CDB2D471ED3A9CD007929E9 /* tensorflow_utils.h */,
-				AF0BE9921F5F435200D95C5D /* strip_unused_nodes_graph.pb */,
 				1CDB2D481ED3A9CD007929E9 /* tensorflow_utils.mm */,
-				AF7230331F4E35F0009CF535 /* eight_calculaiton_graph.pb */,
+				AF0BE9941F5F46ED00D95C5D /* strip_unused_nodes_graph.pb */,
 				AF7230341F4E35F0009CF535 /* kid_new_label_map.txt */,
 				5911579C1CF4011C00C31E3A /* Products */,
 				24D7686C331131624F4454A0 /* Frameworks */,
@@ -257,7 +257,7 @@
 				AF18C6F01F54DFF1003D222D /* Sheep.wav in Resources */,
 				AF18C6E31F54DFF1003D222D /* Crow.wav in Resources */,
 				AF18C6E91F54DFF1003D222D /* Frog.wav in Resources */,
-				AF0BE9931F5F435200D95C5D /* strip_unused_nodes_graph.pb in Resources */,
+				AF0BE9951F5F46ED00D95C5D /* strip_unused_nodes_graph.pb in Resources */,
 				AF18C6EC1F54DFF1003D222D /* Mickey.wav in Resources */,
 				AF18C6E11F54DFF1003D222D /* Chicken.wav in Resources */,
 				AF18C6E51F54DFF1003D222D /* Dolphin.wav in Resources */,
@@ -265,6 +265,7 @@
 				AF18C6EE1F54DFF1003D222D /* Mouse.wav in Resources */,
 				AF7230361F4E35F0009CF535 /* kid_new_label_map.txt in Resources */,
 				AF18C6EF1F54DFF1003D222D /* Rabbit.wav in Resources */,
+				AF3E18F01F61B96A00A7BBE4 /* background.jpg in Resources */,
 				AF18C6EB1F54DFF1003D222D /* Lion.wav in Resources */,
 				AF18C6EA1F54DFF1003D222D /* Horse.wav in Resources */,
 				AF18C6DD1F54DFF1003D222D /* Aeroplane.wav in Resources */,
@@ -277,7 +278,6 @@
 				AF18C6DE1F54DFF1003D222D /* Bee.wav in Resources */,
 				AF18C6DF1F54DFF1003D222D /* Bird.wav in Resources */,
 				AF18C6E41F54DFF1003D222D /* Dog.wav in Resources */,
-				AF7230351F4E35F0009CF535 /* eight_calculaiton_graph.pb in Resources */,
 				AFFBE8541F4CF84500F3BDAB /* Default-568h@2x.png in Resources */,
 				AF18C6F11F54DFF1003D222D /* Squirrel.wav in Resources */,
 			);

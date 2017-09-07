@@ -149,7 +149,7 @@ Status ReadTensorFromImageFile(const string& file_name, const int input_height, 
     std::vector<tensorflow::uint8> image_data;
     
     int image_width, image_height, image_channels;
-    int ret = LoadImageFromFileAndScale(file_name.c_str(), image_width, image_height, image_channels,
+    LoadImageFromFileAndScale(file_name.c_str(), image_width, image_height, image_channels,
                                         input_width, input_height,
                                         &original_image_data, &image_data);
     

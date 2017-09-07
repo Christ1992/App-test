@@ -26,26 +26,29 @@ using tensorflow::Status;
 using tensorflow::string;
 using tensorflow::int32;
 using tensorflow::uint8;
+
 // If you have your own model, modify this to the file name, and make sure
 // you've added the file to your app resources too.
 static NSString* model_file_name = @"strip_unused_nodes_graph";
 static NSString* model_file_type = @"pb";
-// This controls whether we'll be loading a plain GraphDef proto, or a
-// file created by the convert_graphdef_memmapped_format utility that wraps a
-// GraphDef and parameter file that can be mapped into memory from file to
-// reduce overall memory usage.
-//const bool model_uses_memory_mapping = false;
+
 // If you have your own model, point this to the labels file.
 static NSString* labels_file_name = @"kid_new_label_map";
 static NSString* labels_file_type = @"txt";
+
 // These dimensions need to match those the model was trained with.
 const tensorflow::int32 wanted_input_width = 300;
 const tensorflow::int32 wanted_input_height = 300;
 const tensorflow::int32 wanted_input_channels = 3;
+
+
 //const float input_mean = 128.0f;
 //const float input_std = 128.0f;
 //const std::string input_layer_name = "image_tensor";
 //const std::array output_layer_name = "detection_boxes", "detection_scores", "detection_classes", "num_detections";
+
+
+//global values setting
 bool freezeBtn=false;
 const int frameWidth=320;
 const int frameHeight=320*640/480;
@@ -61,16 +64,18 @@ int predictedID=-1;
 NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 NSString *doucumentDirectory = paths[0];
 NSString *fullPath = [doucumentDirectory stringByAppendingPathComponent:@"photo.jpg"];
+
 int typeFlag=0;
 NSArray *soundIDSet;
-//bool drawfinish=true;
+
+
 static void *AVCaptureStillImageIsCapturingStillImageContext =
     &AVCaptureStillImageIsCapturingStillImageContext;
 UIColor *textColor =[UIColor colorWithRed:0.1f green:0.1f blue:1.0f alpha:1.0f];
-UIFont *helveticaBold = [UIFont fontWithName:@"HelveticaNeue" size:15.0f];
+UIFont *helveticaBold = [UIFont fontWithName:@"HelveticaNeue" size:25.0f];
 NSDictionary *dicAttribute = @{NSFontAttributeName:helveticaBold, NSForegroundColorAttributeName:textColor};
-
 CFBundleRef mainBundle = CFBundleGetMainBundle();
+
 
 @interface CameraExampleViewController (InternalMethods)
 - (void)setupAVCapture;
@@ -82,49 +87,40 @@ CFBundleRef mainBundle = CFBundleGetMainBundle();
 
 @implementation CameraExampleViewController
 
-//std::vector<float> predictedRect;
-//std::vector<std::string> predictedName;
-
 -(void)playSound:(int) ID{
-//    SystemSoundID soundID;
-//    NSString *soundFile = [[NSBundle mainBundle] pathForResource:@"dingdong" ofType:@"wav"];
-//    AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:soundFile], &soundID);
-//    //提示音 带震动
-//    //    AudioServicesPlayAlertSound(soundID);
-//    //系统声音labels[i].c_str()
+//    play the corresponding sound using AVToolBox
     
-        SystemSoundID soundID;
-        NSString *str= [NSString stringWithCString:labels[ID].c_str() encoding:[NSString defaultCStringEncoding]];
-//        NSString *strSoundFile = [[NSBundle mainBundle] pathForResource:str ofType:@"wav"];
-        NSLog(@"str:%@",str);
-    
+    SystemSoundID soundID;
+    NSString *str= [NSString stringWithCString:labels[ID].c_str() encoding:[NSString defaultCStringEncoding]];
     NSString* strSoundFile = FilePathForResourceName(str, @"wav");
-     NSLog(@"strSoundFile:%@",strSoundFile);
-        AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:strSoundFile],&soundID);
-        AudioServicesPlaySystemSound(soundID);
-        //        AudioServicesPlaySystemSound(soundID);
+    
+//    create sound ID & play
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)[NSURL fileURLWithPath:strSoundFile],&soundID);
+    AudioServicesPlaySystemSound(soundID);
+    
     
    }
 - (IBAction)runButton:(id)sender {
     [sender setTitle:@"Loading...." forState:UIControlStateNormal];
     
+//    preparation for detection model
     int width;
     int height;
     int channels;
-    [self removeAllLabelLayers];
-    
     std::vector<tensorflow::Tensor> outputs;
-    NSString* filepath = [doucumentDirectory stringByAppendingFormat:@"/photo"];
-    
     predictedX=-1;
     predictedY=-1;
     predictedW=-1;
     predictedH=-1;
     predictedID=-1;
-    int ret = runModel(filepath, @"jpg", &width, &height, &channels, typeFlag, outputs);
-//    开始print的准备工作
+    NSString* filepath = [doucumentDirectory stringByAppendingFormat:@"/photo"];
+    [self removeAllLabelLayers];
     
-//    std::vector<float> locations;
+//    run model session
+    int ret = runModel(filepath, @"jpg", &width, &height, &channels, typeFlag, outputs);
+
+    
+//    get result and print
     if(ret==0){
         std::vector<float> boxScore;
         std::vector<float> boxRect;
@@ -132,8 +128,8 @@ CFBundleRef mainBundle = CFBundleGetMainBundle();
         tensorflow::TTypes<float>::Flat scores_flat = outputs[1].flat<float>();
         tensorflow::Tensor &indices = outputs[2];
         tensorflow::TTypes<float>::Flat indices_flat = indices.flat<float>();
-//        predictedRect.clear();
-//        predictedName.clear();
+
+        
         wordsToSay=nil;
 //    
         const tensorflow::Tensor& encoded_locations = outputs[0];
@@ -233,7 +229,7 @@ CFBundleRef mainBundle = CFBundleGetMainBundle();
                 //
                 if ((labelCount == 0) && (boxScore.at(i) > 0.5f)) {
                     
-                    wordsToSay=[NSString stringWithFormat:@"There is a %@. Guess where it is?", labelName];
+                    wordsToSay=[NSString stringWithFormat:@"There is a %@. Can you find it?", labelName];
                     predictedX=originX;
                     predictedY=originY;
                     predictedW=labelWidth;
@@ -254,7 +250,7 @@ CFBundleRef mainBundle = CFBundleGetMainBundle();
                     [drawView addSubview:correctArea];
                 
                 //      add touchable area
-                [self playSound:predictedID];
+//                [self playSound:predictedID];
                 [self speak:wordsToSay];
                 
                 
@@ -488,11 +484,30 @@ CFBundleRef mainBundle = CFBundleGetMainBundle();
     }
 }
 
+int speakControl = 1;
 -(void)tapView:(UITapGestureRecognizer *)sender{
     //设置轻拍事件改变testView的颜色
     correctArea.backgroundColor = [UIColor colorWithRed:arc4random()%256/255.0 green:arc4random()%256/255.0 blue:arc4random()%256/255.0 alpha:0.2];
     NSLog(@"why no color?");
-    [self speak:@"Yeah! You are so smart."];
+    switch (speakControl)
+    {
+        case 1:
+            [self speak:@"Smart kid!"];
+            [self playSound:predictedID];
+            speakControl++;
+            break;
+        case 2:
+            [self speak:@"Good choice."];
+            [self playSound:predictedID];
+            speakControl++;
+            break;
+        default:
+            [self speak:@"Nice shot."];
+            [self playSound:predictedID];
+            speakControl=1;
+            break;
+    }
+    
 }
 
 - (void)setupAVCapture {
@@ -652,6 +667,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     CVPixelBufferUnlockBaseAddress(pixelBuffer, unlockFlags);
 
 //run the graph model
+    
   if (tf_session.get()) {
     std::vector<tensorflow::Tensor> outputs;
      double a = CFAbsoluteTimeGetCurrent();
@@ -663,6 +679,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
       predictedH=-1;
       predictedID=-1;
 //      wordsToSay=nil;
+      
     if (!run_status.ok()) {
       LOG(ERROR) << "Running model failed:" << run_status;
     } else {
@@ -756,7 +773,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 //
             if ((labelCount == 0) && (boxScore.at(i) > 0.5f)) {
             
-                wordsToSay=[NSString stringWithFormat:@"There is a %@. Guess where it is?", labelName];
+                wordsToSay=[NSString stringWithFormat:@"There is a %@. Can you find it?", labelName];
                 predictedX=originX;
                 predictedY=originY;
                 predictedW=labelWidth;
@@ -790,7 +807,8 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
                        height:(float)height
                     alignment:(NSString *)alignment {
     CFTypeRef font = (CFTypeRef) @"Menlo-Regular";
-    const float fontSize = 10.0f;
+//    const float fontSize = 10.0f;
+    const float fontSize = 13.0f;
     
     const float marginSizeX = 5.0f;
     const float marginSizeY = 2.0f;
@@ -798,7 +816,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     CGRect backgroundBounds = CGRectMake(originX, originY, width, height);
     
     CGRect textBounds =
-    CGRectMake((originX + marginSizeX), (originY - 5*marginSizeY),
+    CGRectMake((originX + marginSizeX), (originY - 8*marginSizeY),
                (width - (marginSizeX * 2)), (height - (marginSizeY * 2)));
     
     

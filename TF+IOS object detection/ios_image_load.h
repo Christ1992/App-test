@@ -31,6 +31,6 @@ LoadImageFromFileAndScale(const char* file_name,
                           std::vector<tensorflow::uint8> * original_image,
                           std::vector<tensorflow::uint8> * scale_image);
 
-int SaveImageFromRawData(std::string file_name, void * image_data, int width, int height, int channels);
+//int SaveImageFromRawData(std::string file_name, void * image_data, int width, int height, int channels);
 
 //#endif  // TENSORFLOW_CONTRIB_IOS_EXAMPLES_CAMERA_IMAGE_LOAD_H_
