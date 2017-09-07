@@ -50,6 +50,9 @@ class IfstreamInputStream : public ::google::protobuf::io::CopyingInputStream {
   std::ifstream ifs_;
 };
 }  // namespace
+static NSString* model_file_name = @"strip_unused_nodes_graph";//@"multibox_model"; frozen
+static NSString* model_file_type = @"pb";
+
 
 bool PortableReadFileToProto(const std::string& file_name,
                              ::google::protobuf::MessageLite* proto) {
@@ -63,8 +66,9 @@ bool PortableReadFileToProto(const std::string& file_name,
   return proto->ParseFromCodedStream(&coded_stream);
 }
 
+
+// load file from local path
 NSString* FilePathForResourceName(NSString* name, NSString* extension) {
-    //    fileFullpath=[NSString initWithFormat:@"%s/%s", doucumentDirectory, name ];
     NSString* file_path =
       [[NSBundle mainBundle] pathForResource:name ofType:extension];
   if (file_path == NULL) {
@@ -75,6 +79,7 @@ NSString* FilePathForResourceName(NSString* name, NSString* extension) {
   return file_path;
 }
 
+// load the model
 tensorflow::Status LoadModel(NSString* file_name, NSString* file_type,
                              std::unique_ptr<tensorflow::Session>* session) {
   tensorflow::SessionOptions options;
@@ -82,7 +87,8 @@ tensorflow::Status LoadModel(NSString* file_name, NSString* file_type,
   tensorflow::Session* session_pointer = nullptr;
   tensorflow::Status session_status =
       tensorflow::NewSession(options, &session_pointer);
-  if (!session_status.ok()) {
+  
+    if (!session_status.ok()) {
     LOG(ERROR) << "Could not create TensorFlow Session: " << session_status;
     return session_status;
   }
@@ -90,6 +96,7 @@ tensorflow::Status LoadModel(NSString* file_name, NSString* file_type,
 
   tensorflow::GraphDef tensorflow_graph;
 
+  // load the model with file name
   NSString* model_path = FilePathForResourceName(file_name, file_type);
   if (!model_path) {
     LOG(ERROR) << "Failed to find model proto at" << [file_name UTF8String]
@@ -104,6 +111,7 @@ tensorflow::Status LoadModel(NSString* file_name, NSString* file_type,
     return tensorflow::errors::NotFound([model_path UTF8String]);
   }
 
+  // create session
   tensorflow::Status create_status = (*session)->Create(tensorflow_graph);
   if (!create_status.ok()) {
     LOG(ERROR) << "Could not create TensorFlow Graph: " << create_status;
@@ -115,8 +123,11 @@ tensorflow::Status LoadModel(NSString* file_name, NSString* file_type,
 }
 
 std::string line;
+
+// load labels
 tensorflow::Status LoadLabels(NSString* file_name, NSString* file_type,
                               std::vector<std::string>* label_strings) {
+  
   // Read the label list
   NSString* labels_path = FilePathForResourceName(file_name, file_type);
   if (!labels_path) {
@@ -136,8 +147,8 @@ tensorflow::Status LoadLabels(NSString* file_name, NSString* file_type,
   return tensorflow::Status::OK();
 }
 
-static NSString* model_file_name = @"strip_unused_nodes_graph";//@"multibox_model"; frozen
-static NSString* model_file_type = @"pb";
+
+// get tensor from resized image
 Status ReadTensorFromImageFile(const string& file_name, const int input_height, const int input_width,
                                int *width, int *height, int *channels,
                                int typeFlag,
@@ -154,8 +165,8 @@ Status ReadTensorFromImageFile(const string& file_name, const int input_height, 
                                         &original_image_data, &image_data);
     
     *width = image_width; *height = image_height; *channels = image_channels;
-//    assert(image_channels >= wanted_channels && ret == 0);
-    
+
+    // tensor of resized image
     tensorflow::Tensor resized_tensor(
                                       tensorflow::DT_FLOAT,
                                       tensorflow::TensorShape({1, input_height, input_width, wanted_channels}));
@@ -176,15 +187,8 @@ Status ReadTensorFromImageFile(const string& file_name, const int input_height, 
         }
     }
 
-//    if(typeFlag==3){
-//        image_channels=3;
-//    }else{
-//        image_channels=4;
-//    };
-    NSLog(@"readTensor:%d",typeFlag);
-     NSLog(@"image_channels:%d",image_channels);
-        
     
+    // tensor of larger resized image
     tensorflow::Tensor image_tensors_org(
                                     tensorflow::DT_UINT8,
                                     tensorflow::TensorShape(
@@ -210,45 +214,29 @@ Status ReadTensorFromImageFile(const string& file_name, const int input_height, 
             
         }
     }
-//
-//    tensorflow::Tensor image_tensors_org4(
-//                                          tensorflow::DT_UINT8,
-//                                          tensorflow::TensorShape({1, image_height, image_width, image_channels}));
-//    
-//    auto image_tensor_org4_mapped = image_tensors_org4.tensor<uint8, 4>();
-//    memcpy(image_tensor_org4_mapped.data(), original_image_data.data(), image_height*image_width*image_channels);
-    
+
     out_tensors->push_back(resized_tensor);
     out_tensors->push_back(image_tensors_org);
-//    out_tensors->push_back(image_tensors_org4);
-    
-    //#endif
-    
-    
-    
     
     
     return Status::OK();
 }
 
+// run the detection model
 int runModel(NSString* file_name, NSString* file_type,
               int *width, int *height, int *channels,int typeFlag,
-//             std::vector<float>& boxScore,
-//             std::vector<float>& boxRect,
-//             std::vector<string>& boxName)
               std::vector<tensorflow::Tensor>& outputs)
 {
     string image_path = [[NSString stringWithFormat:@"%@/Documents/%@.jpg",NSHomeDirectory(),@"photo"] UTF8String];
-//    [FilePathForResourceName(file_name, file_type) UTF8String];
+
     string graph = [FilePathForResourceName(model_file_name, model_file_type) UTF8String];
-    //string box_priors = [FilePathForResourceName(labels_file_name, labels_file_type) UTF8String];
     
     int32 input_width = 300;
     int32 input_height = 300;
     
-    // First we load and initialize the model.
+    // load and initialize the model.
     std::unique_ptr<tensorflow::Session> session;
-    //string graph_path = tensorflow::io::JoinPath(root_dir, graph);
+    
     Status load_graph_status = LoadModel(model_file_name,model_file_type,
                                          &session);
     if (!load_graph_status.ok()) {
@@ -259,13 +247,10 @@ int runModel(NSString* file_name, NSString* file_type,
     int image_width;
     int image_height;
     int image_channels;
-    //const int wanted_channels = 3;
     
-    // Get the image from disk as a float array of numbers, resized and normalized
-    // to the specifications the main graph expects.
     std::vector<Tensor> image_tensors;
-    //string image_path = tensorflow::io::JoinPath(root_dir, image);
-    
+   
+    // get the tensor
     Status read_tensor_status = ReadTensorFromImageFile(image_path, input_height, input_width,
                                                         &image_width, &image_height, &image_channels,
                                                         typeFlag,&image_tensors);
@@ -275,106 +260,31 @@ int runModel(NSString* file_name, NSString* file_type,
     }
     const Tensor& resized_tensor = image_tensors[1];
     
-        // Actually run the image through the model.
-//    std::vector<Tensor> outputs;
+    // Actually run the image through the model.
     double a = CFAbsoluteTimeGetCurrent();
     
-    Status run_status =
-    //    session->Run({{input_layer, resized_tensor}},
-    //                 {output_score_layer, output_location_layer}, {}, &outputs);
-    session->Run({{"image_tensor", resized_tensor}},
+    Status run_status = session->Run({{"image_tensor", resized_tensor}},
                  {"detection_boxes", "detection_scores", "detection_classes", "num_detections"}, {}, &outputs);
     if (!run_status.ok()) {
         LOG(ERROR) << "Running model failed: " << run_status;
         return -1;
     }
     
+    // print run model time
     double b = CFAbsoluteTimeGetCurrent();
     unsigned int m = ((b-a) * 1000.0f); // convert from seconds to milliseconds
     NSLog(@"%@: %d ms", @"Run Model Time taken", m);
     
+    //output data
     tensorflow::TTypes<float>::Flat scores_flat = outputs[1].flat<float>();
     std::vector<float> v_scores;
     for(int i=0; i<10; i++)
         v_scores.push_back(scores_flat(i));
     
-//    Status print_status = PrintTopDetections(outputs,
-//                                             boxScore, boxRect, boxName,
-//                                             &image_tensors[2]);
-//    
-//    if (!print_status.ok()) {
-//        LOG(ERROR) << "Running print failed: " << print_status;
-//        return -1;
-//    }
-    
-    //SaveImageFromRawData(image_out, image_tensors[2].tensor<uint8, 4>().data(), image_width, image_height, 4);
-//    *image_data = malloc(image_width*image_height*image_channels+8192);
-//    memcpy(*image_data, image_tensors[2].tensor<uint8, 4>().data(), image_width*image_height*image_channels);
-    //*image_data = image_tensors[2].tensor<uint8, 4>().data();
     *width = image_width;
     *height = image_height;
     *channels = image_channels;
     
     
     return 0;
-}
-Status PrintTopDetections(std::vector<Tensor>& outputs,
-                          std::vector<float>& boxScore,
-                          std::vector<float>& boxRect,
-                          std::vector<string>& boxName,
-                          Tensor* original_tensor) {
-//    std::vector<float> locations;
-//    //size_t label_count;
-//    
-//    
-//    Tensor &indices = outputs[2];
-//    Tensor &scores = outputs[1];
-//    
-//    tensorflow::TTypes<float>::Flat scores_flat = scores.flat<float>();
-//    
-//    tensorflow::TTypes<float>::Flat indices_flat = indices.flat<float>();
-//    
-//    const Tensor& encoded_locations = outputs[0];
-//    auto locations_encoded = encoded_locations.flat<float>();
-//    
-//    LOG(INFO) << original_tensor->DebugString();
-//    const int image_width = (int)original_tensor->shape().dim_size(2);
-//    const int image_height = (int)original_tensor->shape().dim_size(1);
-//    
-//    //    tensorflow::TTypes<uint8>::Flat image_flat = original_tensor->flat<uint8>();
-//    //    LOG(INFO) << original_tensor->DebugString();
-//    
-//    object_detection::protos::StringIntLabelMap imageLabels;
-//    LoadLablesFile([FilePathForResourceName(@"kid_new_label_map", @"txt") UTF8String], &imageLabels);
-//    
-//    
-//    for (int pos = 0; pos < 20; ++pos) {
-//        const int label_index = (int32)indices_flat(pos);
-//        const float score = scores_flat(pos);
-//        
-//        if (score < 0.25) break;
-//        
-//        float left = locations_encoded(pos * 4 + 1) * image_width;
-//        float top = locations_encoded(pos * 4 + 0) * image_height;
-//        float right = locations_encoded(pos * 4 + 3) * image_width;
-//        float bottom = locations_encoded((pos * 4 + 2)) * image_height;
-//        
-//        string displayName = "";
-//        GetDisplayName(&imageLabels, displayName, label_index);
-//        
-//        LOG(INFO) << "Detection " << pos << ": "
-//        << "L:" << left << " "
-//        << "T:" << top << " "
-//        << "R:" << right << " "
-//        << "B:" << bottom << " "
-//        << "(" << pos << ") score: " << score << " Detected Name: " << displayName;
-//        
-//        boxScore.push_back(score);
-//        boxName.push_back(displayName);
-//        boxRect.push_back(left); boxRect.push_back(top); boxRect.push_back(right); boxRect.push_back(bottom);
-//        
-//        //DrawBox(image_width, image_height, left, top, right, bottom, &image_flat);
-//    }
-//    
-    return Status::OK();
 }

@@ -12,17 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-//#ifndef TENSORFLOW_CONTRIB_IOS_EXAMPLES_CAMERA_IMAGE_LOAD_H_
-//#define TENSORFLOW_CONTRIB_IOS_EXAMPLES_CAMERA_IMAGE_LOAD_H_
 
 #include <vector>
 
 #include "tensorflow/core/framework/types.h"
 
-std::vector<tensorflow::uint8> LoadImageFromFile(const char* file_name,
-                                                 int* out_width,
-                                                 int* out_height,
-                                                 int* out_channels);
 
 int
 LoadImageFromFileAndScale(const char* file_name,
@@ -30,7 +24,3 @@ LoadImageFromFileAndScale(const char* file_name,
                           int scale_width, int scale_height,
                           std::vector<tensorflow::uint8> * original_image,
                           std::vector<tensorflow::uint8> * scale_image);
-
-//int SaveImageFromRawData(std::string file_name, void * image_data, int width, int height, int channels);
-
-//#endif  // TENSORFLOW_CONTRIB_IOS_EXAMPLES_CAMERA_IMAGE_LOAD_H_

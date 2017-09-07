@@ -30,21 +30,20 @@
   __weak IBOutlet UIView *drawView;
   AVCaptureVideoPreviewLayer *previewLayer;
    __weak IBOutlet UIImageView *boundView;
-  AVCaptureVideoDataOutput *videoDataOutput;
-  dispatch_queue_t videoDataOutputQueue;
-  AVCaptureStillImageOutput *stillImageOutput;
   UIView *flashView;
   UIView* correctArea;
                            
+  AVCaptureVideoDataOutput *videoDataOutput;
+  dispatch_queue_t videoDataOutputQueue;
+  AVCaptureStillImageOutput *stillImageOutput;
+  
   AVSpeechSynthesizer *synth;
-  NSMutableDictionary *oldPredictionValues;
+  
   NSMutableArray *labelLayers;
   AVCaptureSession *session;
   std::unique_ptr<tensorflow::Session> tf_session;
-//  std::unique_ptr<tensorflow::MemmappedEnv> tf_memmapped_env;
   std::vector<std::string> labels;
                            
-//  IBOutlet UISegmentedControl *camerasControl;
 }
 @property(strong, nonatomic) CATextLayer *predictionTextLayer;
 @property (weak, nonatomic) IBOutlet UIButton *runStopBtn;

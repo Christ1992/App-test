@@ -141,6 +141,36 @@
 		591157921CF4011C00C31E3A = {
 			isa = PBXGroup;
 			children = (
+				AF3E18F11F61FC8200A7BBE4 /* sounds */,
+				AF3E18F31F61FCE100A7BBE4 /* img */,
+				1C99111B1ED3B0E600A6BFB9 /* MainStoryboard_iPhone.storyboard */,
+				1C3C9DC81ED3AB4200B8B5FA /* ios_image_load.h */,
+				1C3C9DC91ED3AB4200B8B5FA /* ios_image_load.mm */,
+				1C3C9DCA1ED3AB4200B8B5FA /* main.mm */,
+				1CDB2D4D1ED3AA35007929E9 /* Info.plist */,
+				1CDB2D421ED3A9CD007929E9 /* CameraExampleAppDelegate.h */,
+				1CDB2D431ED3A9CD007929E9 /* CameraExampleAppDelegate.m */,
+				1CDB2D441ED3A9CD007929E9 /* CameraExampleViewController.h */,
+				1CDB2D451ED3A9CD007929E9 /* CameraExampleViewController.mm */,
+				1CDB2D471ED3A9CD007929E9 /* tensorflow_utils.h */,
+				1CDB2D481ED3A9CD007929E9 /* tensorflow_utils.mm */,
+				AF3E18F41F61FCF300A7BBE4 /* detection model */,
+				5911579C1CF4011C00C31E3A /* Products */,
+				24D7686C331131624F4454A0 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		5911579C1CF4011C00C31E3A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1C564C0D1ED3A92E00087306 /* WhatDoesItSay.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AF3E18F11F61FC8200A7BBE4 /* sounds */ = {
+			isa = PBXGroup;
+			children = (
 				AF18C6C61F54DFED003D222D /* Aeroplane.wav */,
 				AF18C6C71F54DFED003D222D /* Bee.wav */,
 				AF18C6C81F54DFEE003D222D /* Bird.wav */,
@@ -153,7 +183,6 @@
 				AF18C6CF1F54DFEF003D222D /* Duck.wav */,
 				AF18C6D01F54DFEF003D222D /* Elephant.wav */,
 				AF18C6D11F54DFEF003D222D /* Fox.wav */,
-				AF3E18EF1F61B96A00A7BBE4 /* background.jpg */,
 				AF18C6D21F54DFEF003D222D /* Frog.wav */,
 				AF18C6D31F54DFEF003D222D /* Horse.wav */,
 				AF18C6D41F54DFEF003D222D /* Lion.wav */,
@@ -165,31 +194,26 @@
 				AF18C6DA1F54DFF0003D222D /* Squirrel.wav */,
 				AF18C6DB1F54DFF1003D222D /* Waterfall.wav */,
 				AF18C6DC1F54DFF1003D222D /* Whale.wav */,
-				AFFBE8531F4CF84500F3BDAB /* Default-568h@2x.png */,
-				1C99111B1ED3B0E600A6BFB9 /* MainStoryboard_iPhone.storyboard */,
-				1C3C9DC81ED3AB4200B8B5FA /* ios_image_load.h */,
-				1C3C9DC91ED3AB4200B8B5FA /* ios_image_load.mm */,
-				1C3C9DCA1ED3AB4200B8B5FA /* main.mm */,
-				1CDB2D4D1ED3AA35007929E9 /* Info.plist */,
-				1CDB2D421ED3A9CD007929E9 /* CameraExampleAppDelegate.h */,
-				1CDB2D431ED3A9CD007929E9 /* CameraExampleAppDelegate.m */,
-				1CDB2D441ED3A9CD007929E9 /* CameraExampleViewController.h */,
-				1CDB2D451ED3A9CD007929E9 /* CameraExampleViewController.mm */,
-				1CDB2D471ED3A9CD007929E9 /* tensorflow_utils.h */,
-				1CDB2D481ED3A9CD007929E9 /* tensorflow_utils.mm */,
-				AF0BE9941F5F46ED00D95C5D /* strip_unused_nodes_graph.pb */,
-				AF7230341F4E35F0009CF535 /* kid_new_label_map.txt */,
-				5911579C1CF4011C00C31E3A /* Products */,
-				24D7686C331131624F4454A0 /* Frameworks */,
 			);
+			name = sounds;
 			sourceTree = "<group>";
 		};
-		5911579C1CF4011C00C31E3A /* Products */ = {
+		AF3E18F31F61FCE100A7BBE4 /* img */ = {
 			isa = PBXGroup;
 			children = (
-				1C564C0D1ED3A92E00087306 /* WhatDoesItSay.app */,
+				AF3E18EF1F61B96A00A7BBE4 /* background.jpg */,
+				AFFBE8531F4CF84500F3BDAB /* Default-568h@2x.png */,
 			);
-			name = Products;
+			name = img;
+			sourceTree = "<group>";
+		};
+		AF3E18F41F61FCF300A7BBE4 /* detection model */ = {
+			isa = PBXGroup;
+			children = (
+				AF0BE9941F5F46ED00D95C5D /* strip_unused_nodes_graph.pb */,
+				AF7230341F4E35F0009CF535 /* kid_new_label_map.txt */,
+			);
+			name = "detection model";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

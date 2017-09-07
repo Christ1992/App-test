@@ -30,43 +30,15 @@
 tensorflow::Status LoadModel(NSString* file_name, NSString* file_type,
                              std::unique_ptr<tensorflow::Session>* session);
 
-// Loads a model from a file that has been created using the
-// convert_graphdef_memmapped_format tool. This bundles together a GraphDef
-// proto together with a file that can be memory-mapped, containing the weight
-// parameters for the model. This is useful because it reduces the overall
-// memory pressure, since the read-only parameter regions can be easily paged
-// out and don't count toward memory limits on iOS.
-
-
-//tensorflow::Status LoadMemoryMappedModel(
-//    NSString* file_name, NSString* file_type,
-//    std::unique_ptr<tensorflow::Session>* session,
-//    std::unique_ptr<tensorflow::MemmappedEnv>* memmapped_env);
-
-
 
 // Takes a text file with a single label on each line, and returns a list.
 tensorflow::Status LoadLabels(NSString* file_name, NSString* file_type,
                               std::vector<std::string>* label_strings);
 
-//tensorflow::Status PrintTopDetections(std::vector & outputs2,
-//                          std::vector<float>& boxScore,
-//                          std::vector<float>& boxRect,
-//                          std::vector<std::string>& boxName,
-//                          int image_width, int image_height,
-//                          //Tensor* original_tensor,
-//                          std::vector<std::string>& labels);
-// Sorts the results from a model execution, and returns the highest scoring.
-//void GetTopN(const Eigen::TensorMap<Eigen::Tensor<float, 1, Eigen::RowMajor>,
-//                                    Eigen::Aligned>& prediction,
-//             const int num_results, const float threshold,
-//             std::vector<std::pair<float, int> >* top_results);
-
 int runModel(NSString* file_name, NSString* file_type,
               int *width, int *height, int *channels,int typeFlag,
-//             std::vector<float>& boxScore,
-//             std::vector<float>& boxRect,
-//             std::vector<std::string>& boxName);
              std::vector<tensorflow::Tensor>& outputs);
+
 NSString* FilePathForResourceName(NSString* name, NSString* extension);
+
 #endif  // TENSORFLOW_CONTRIB_IOS_EXAMPLES_CAMERA_TENSORFLOW_UTILS_H_
