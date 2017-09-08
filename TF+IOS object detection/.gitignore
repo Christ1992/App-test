@@ -4,3 +4,4 @@ imagenet_comp_graph_label_strings.txt
 *.pb
 Pods/*
 data/*
+*.png

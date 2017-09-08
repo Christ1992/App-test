@@ -874,7 +874,7 @@ int speakControl = 1;
     // draw bounding boxes
     CATextLayer *background = [CATextLayer layer];
     [background setBackgroundColor:[UIColor clearColor].CGColor];
-    [background setBorderColor:[UIColor blackColor].CGColor];
+    [background setBorderColor:[UIColor yellowColor].CGColor];
     [background setBorderWidth:2];
     [background setFrame:backgroundBounds];
     
